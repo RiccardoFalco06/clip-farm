@@ -1,0 +1,138 @@
+{
+  "_nota": "capienza: 2 live insieme senza SSD, 3 con. Con la SSD cambiare anche 'registrazioni'. 'media' = spettatori tipici, usati solo quando la piattaforma non dà il numero dal vivo (Twitch senza chiave).",
+  "capienza": 1,
+  "registrazioni": "~/Projects/clip-farm/registrazioni",
+  "blocco_secondi": 600,
+  "tieni_blocchi": false,
+  "isteresi": {
+    "margine": 1.3,
+    "minuti": 10
+  },
+  "gta6": "\\bgta\\s*(6|vi)\\b|grand theft auto\\s*(6|vi)\\b",
+  "max_clip_per_blocco": 1,
+  "candidati_per_blocco": 3,
+  "voto_minimo": 7,
+  "scoperta_minimo": 10000,
+  "folla_minimo_viste": {
+    "twitch": 2000,
+    "kick": 200
+  },
+  "pubblicazione_automatica": true,
+  "pubblica_ogni_minuti": [
+    45,
+    120
+  ],
+  "copia_sul_desktop": true,
+  "firma": "@iamclipfarmer67",
+  "visibilita_youtube": "Pubblico",
+  "campagne": {
+    "soglia_per_1000": 0.5,
+    "tetto_minimo_clip": 100
+  },
+  "account": {
+    "youtube": "",
+    "instagram": "",
+    "tiktok": ""
+  },
+  "email": "you@example.com",
+  "streamer": [
+    {
+      "nome": "Kai Cenat",
+      "twitch": "kaicenat",
+      "media": 70000
+    },
+    {
+      "nome": "IShowSpeed",
+      "youtube": "@IShowSpeed",
+      "twitch": "ishowspeed",
+      "media": 80000
+    },
+    {
+      "nome": "xQc",
+      "twitch": "xqc",
+      "kick": "xqc",
+      "media": 40000
+    },
+    {
+      "nome": "Adin Ross",
+      "kick": "adinross",
+      "media": 40000
+    },
+    {
+      "nome": "N3on",
+      "kick": "n3on",
+      "media": 20000
+    },
+    {
+      "nome": "CaseOh",
+      "twitch": "caseoh_",
+      "media": 40000
+    },
+    {
+      "nome": "Jynxzi",
+      "twitch": "jynxzi",
+      "media": 50000
+    },
+    {
+      "nome": "Agent 00",
+      "twitch": "agent00",
+      "media": 20000
+    },
+    {
+      "nome": "Duke Dennis",
+      "twitch": "dukedennis",
+      "media": 25000
+    },
+    {
+      "nome": "Fanum",
+      "twitch": "fanum",
+      "media": 15000
+    },
+    {
+      "nome": "PlaqueBoyMax",
+      "twitch": "plaqueboymax",
+      "media": 20000
+    },
+    {
+      "nome": "Stable Ronaldo",
+      "twitch": "stableronaldo",
+      "media": 20000
+    },
+    {
+      "nome": "Lacy",
+      "twitch": "lacy",
+      "media": 20000
+    },
+    {
+      "nome": "DDG",
+      "twitch": "ddg",
+      "media": 15000
+    },
+    {
+      "nome": "TypicalGamer",
+      "youtube": "@TypicalGamer",
+      "media": 15000
+    },
+    {
+      "nome": "Summit1g",
+      "twitch": "summit1g",
+      "media": 15000
+    },
+    {
+      "nome": "Ninja",
+      "twitch": "ninja",
+      "media": 10000
+    },
+    {
+      "nome": "lordkebun",
+      "kick": "lordkebun"
+    }
+  ],
+  "recupero_da_clip": 28,
+  "stile": "speedy",
+  "campagne_attive": [],
+  "_nota_campagne": "campagne_attive: le aggiunge lo scout da solo (streamer seguito, Content Rewards o clipping.net, clip di qualsiasi live). Per ognuna: streamer, link_invio, hashtag, promozione (contenuto pagato da un marchio), regole, parole facoltative nel titolo.",
+  "senza_recupero": [
+    "youtube"
+  ]
+}

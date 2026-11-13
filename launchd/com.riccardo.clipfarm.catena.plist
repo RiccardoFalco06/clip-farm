@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.riccardo.clipfarm.catena</string>
+  <key>ProgramArguments</key>
+  <array><string>/Library/Frameworks/Python.framework/Versions/3.13/bin/python3</string><string>-I</string><string>/Users/riccardofalco/Projects/clip-farm/catena.py</string></array>
+  <key>WorkingDirectory</key><string>/Users/riccardofalco/Projects/clip-farm</string>
+  <key>EnvironmentVariables</key>
+  <dict><key>PATH</key><string>/Users/riccardofalco/.local/bin:/Library/Frameworks/Python.framework/Versions/3.13/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string></dict>
+  <key>RunAtLoad</key><true/>
+  <key>StartInterval</key><integer>60</integer>
+  <key>AbandonProcessGroup</key><true/>
+  <key>StandardOutPath</key><string>/Users/riccardofalco/Projects/clip-farm/logs/catena.log</string>
+  <key>StandardErrorPath</key><string>/Users/riccardofalco/Projects/clip-farm/logs/catena.log</string>
+</dict>
+</plist>

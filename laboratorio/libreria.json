@@ -1,0 +1,1082 @@
+{
+  "_come_si_usa": "Libreria dello stile 'speedy' (Speedy Boykins). Ogni elemento dice come si richiama dalla scheda di montaggio (campo 'scheda'), quando usarlo ('vibe') e quando no ('quando_no'). Lo stile si sceglie con UN campo della scheda: \"stile\": \"classico\" (predefinito, sistema vivo di oggi) oppure \"stile\": \"speedy\". Tutti i campi speedy sono facoltativi: una scheda del classico si monta in speedy cambiando solo 'stile'. I tempi 't' sono secondi dall'inizio della clip oppure 'parola@secondo'. 'somiglianza' riporta SOLO numeri misurati (e come); dove non c'è misura è scritto. Shorts: id YouTube (vedi laboratorio/appunti.md); studiati 41.",
+  "_regole_generali": [
+    "Lo stile speedy è quello del canale 2025-2026: formato 3:4 (1080x1440), sottotitoli glow, lampi colorati, narrazioni tra asterischi, finale. Lo stile 2024 (9:16, fumetto/outline, riempitivo GTA) è una variante per i discorsi lunghi.",
+    "L'inizio della clip è sempre in movimento: nessun fermo immagine, rallentatore fino a zero o cartello fisso nei primi 3 secondi (monta.py sposta l'inizio dopo eventuali fermi della sorgente).",
+    "Densità misurata: 27 Shorts su 41 hanno lampi, in media 6 per Short (161 lampi): circa uno ogni 4-6 secondi nei video 2026. Mai due lampi a meno di 1 secondo, salvo il finale.",
+    "Un colore ha un significato fisso: rosso = fallimento/rabbia/no; verde = riuscita/sì/rivelazione; giallo = narrazione, risata; bianco = stacco, presentazione, finale. Lo stesso colore va su lampo, parola colorata e narrazione dello stesso momento.",
+    "Regola di Riccardo (11 nov 2026): le scritte-etichetta (nome + freccia) \"devi farle rimanere per qualche istante… deve vedersi\" e devono sparire insieme alla freccia: \"se spariscono in modo scordinato è brutto\". Stessa `t` e stessa `durata` per scritta e freccia, durata almeno 1,5 s (meglio 2-2,5).",
+    "Finale (emoji + scritta): Regola di Riccardo aggiornata (11 nov 2026, pomeriggio): \"l'emoji finale lasciala in centro, e magari alza a 3/5 l'uso dell'emoji finale sempre con criterio e come eccezione non come regola\". Quindi finale in circa 3 clip su 5, solo dove la chiusura regge (reazione forte che la scritta rende più divertente). Prima aveva detto: \"non mettercela sempre alla fine… sennò è molto pesante e tante volte rischia di non essere divertente\".",
+    "Luce che lampeggia: predefinita nello stile speedy (31 Shorts 2025-2026 su 31). Si spegne con \"luce\": false (e la spegne la vibe seria).",
+    "Icone ed emoji legate ai sottotitoli: Regola di Riccardo (11 nov 2026): \"le icone in mezzo o vicino ai sottotitoli devono SEMPRE essere in questa zona\": centrate sulla scritta, subito sopra o subito sotto (la posizione la calcola monta.py, posa_icone). Le emoji libere lontano dal testo non si usano più. Fa eccezione l'emoji del finale, che resta al centro del quadro.",
+    "Colori dei sottotitoli: Riccardo (11 nov 2026): \"come in quasi tutti i video, tanti sottotitoli hanno colori diversi\". Misurato: in sPS9 16 frasi su 26 sono tutte di un colore, 6 hanno qualche parola colorata, solo 4 sono bianche. Il criterio è il significato o l'emozione della frase, non chi parla (vedi parole_colorate).",
+    "Vibe: prima di montare si sceglie la vibe della clip (sezione 'vibe'). La vibe seria è un'eccezione: Riccardo: \"anche questi video seri sono sempre un'eccezione\".",
+    "Regola di Riccardo (11 nov 2026): 'in tante clip i sottotitoli vengono generati anche se lo streamer non sta parlando o sta facendo versi, in quel caso magari al posto dei sottotitoli mettici cosa sta facendo con gli * o non metterci niente ma cerca di non mettere mai cose che non vengono dette'. trascrivi.py ora toglie le parole non confermate da due prove. Dove lo streamer ride, urla o fa versi senza parole: una narrazione breve tra asterischi che dice cosa fa (*LAUGHING*, *SCREAMING*, *SINGING*), solo se si vede o si sente chiaramente; altrimenti niente."
+  ],
+  "elementi": [
+    {
+      "nome": "formato_34_pieno",
+      "tipo": "layout",
+      "scheda": "\"stile\": \"speedy\", \"layout\": {\"tipo\": \"pieno\", \"cx\": <centro x nella sorgente>} (formato 3:4 predefinito; \"formato\": \"9:16\" per tornare a 1080x1920)",
+      "componente": "monta.py filtro(..., A=1440) + ClipSpeedy",
+      "vibe": "Clip IRL o webcam con un solo soggetto, tutte le vibe. È il formato di 20 Shorts su 28 del 2025-2026.",
+      "quando_no": "Quando c'è un gioco o un video a cui lo streamer reagisce (usare formato_34_diviso), o per i discorsi lunghi a immagine ferma (riempitivo).",
+      "somiglianza": "Formato identico (1080x1440, misurato sui file 608x810 e 1080p degli Shorts).",
+      "visto_in": [
+        "TRG58mooOps",
+        "IUmjjdcRVNc",
+        "FUIKQA8o_6Q",
+        "C4iMYNKbPEg",
+        "5JwFlTVvRTY",
+        "e altri 15"
+      ]
+    },
+    {
+      "nome": "formato_34_diviso",
+      "tipo": "layout",
+      "scheda": "\"layout\": {\"tipo\": \"diviso\", \"facecam\": [x, y, l, a], \"gioco_cx\": <centro x>} con \"stile\": \"speedy\"",
+      "componente": "monta.py filtro(..., A=1440): webcam sopra, contenuto sotto, riga bianca di circa 6 px",
+      "vibe": "Reazione a un gioco, a un video o a un'immagine: sopra la faccia, sotto quello che guarda. Sottotitolo sulla giunzione.",
+      "quando_no": "Se la webcam è assente o illeggibile; se il contenuto sotto non dice niente (meglio pieno sulla faccia).",
+      "somiglianza": "Riga bianca misurata a 0,489-0,496 dell'altezza, circa 6 px; resa a 704-710 su 1440 (autocontrollo di monta.py). Sovrapposizione pixel non misurata.",
+      "visto_in": [
+        "6_uuWW1RcQ0",
+        "9Aeb-O0Chsg",
+        "ocTXLR2F5O4",
+        "XHZxCMQvRIY",
+        "tBJGofnGcS8",
+        "C1t_Vz33Plo",
+        "X8FVGWjeEm8"
+      ]
+    },
+    {
+      "nome": "riempitivo",
+      "tipo": "riempitivo",
+      "scheda": "\"layout\": {\"tipo\": \"riempitivo\", \"video\": \"riempitivi/gta-rampa-2.mp4\", \"da\": <secondo di partenza nel riempitivo>, \"cx\": <centro x della sorgente>} (formato 9:16; consigliato \"testo\": \"fumetto\")",
+      "componente": "monta.py filtro() tipo riempitivo: principale sopra 1080x1076, GTA muto sotto 1080x844, giunzione netta senza riga",
+      "vibe": "Lo streamer parla a lungo e l'immagine resta ferma o povera (discorso, storia, sfogo, just chatting senza gioco): il filmato sotto tiene l'occhio occupato. Criterio misurato sui 3 Shorts che lo usano: tutti dialoghi a immagine quasi ferma lunghi 30-55 s. Regola pratica: parlato quasi continuo per almeno 20 s e nessun gioco o azione da guardare.",
+      "quando_no": "Clip con un gioco o un'azione da guardare, reazioni brevi (sotto 20 s), momenti in cui conta quello che si vede. Nessuno dei 28 Shorts 3:4 del 2025-2026 lo usa: non va mischiato con lampi fitti e finale.",
+      "somiglianza": "Giunzione misurata a 0,550-0,571 dell'altezza (N2 1056-1094, ZA 1096, 3Y 1031-1075 su 1920); resa 1076/1920 = 0,560. Riempitivo muto, continuo, ritagliato ai lati come negli originali.",
+      "credito": "I filmati in ~/Projects/clip-farm/riempitivi/ vengono dai canali YouTube \"Dope Gameplays\" e \"OrbitalNCG +\": liberi da usare a condizione di citare il canale nella descrizione del video pubblicato.",
+      "file": [
+        "riempitivi/gta-rampa-2.mp4",
+        "riempitivi/gta-rampa-3.mp4",
+        "riempitivi/gta-rampa-4.mp4",
+        "riempitivi/gta-rampa-salti-e-schianti.mp4"
+      ],
+      "nota_file": "Usare un punto di partenza 'da' diverso per ogni video. gta-rampa-1 non esiste.",
+      "visto_in": [
+        "N2PIARJ4TFw",
+        "3Y20GSy-k5k",
+        "ZAiZjeWj8KY"
+      ]
+    },
+    {
+      "nome": "glow",
+      "tipo": "sottotitolo",
+      "scheda": "predefinito con \"stile\": \"speedy\" (\"testo\": \"glow\"); ritocchi con \"glow\": {...} (vedi GLOW_34 in Testo.tsx)",
+      "componente": "Testo.tsx FraseGlow, stile GLOW_34; frasi da monta.py frasi_speedy()",
+      "vibe": "Lo stile dei sottotitoli 2026, va bene per tutto: frase che si costruisce parola per parola su 1-2 righe (17 caratteri per riga), ogni parola si accende in 0,2 s, la frase vecchia sfuma in 0,28 s, la spaziatura si allarga piano finché la frase resta. Prima riga appena sopra la metà (linea di base 711 su 1440), sulla giunzione nel diviso.",
+      "quando_no": "Nel formato 9:16 con riempitivo (lì gli originali usano il fumetto). Non mettere più di 2 righe.",
+      "somiglianza": "Font: Figtree 900 (libero, Google Fonts), il font originale non è identificato. IoU medio per lettera resa in Remotion contro originale 0,858 (16 lettere, 3 campioni, size 68, scaleX 0,92). Alone: scarto del profilo 2,1/255 (TRG 4,5 s). Spaziatura: originale +0,0218 em/s, resa corretta a 0,0218 ma non riverificata dopo la correzione.",
+      "visto_in": "26 Shorts (tutti quelli 2025-2026 tranne SggsKTivDao)",
+      "regola_riccardo_parlato": "Regola di Riccardo (11 nov 2026): 'in tante clip i sottotitoli vengono generati anche se lo streamer non sta parlando o sta facendo versi, in quel caso magari al posto dei sottotitoli mettici cosa sta facendo con gli * o non metterci niente ma cerca di non mettere mai cose che non vengono dette'. trascrivi.py ora toglie le parole non confermate da due prove. Dove lo streamer ride, urla o fa versi senza parole: una narrazione breve tra asterischi che dice cosa fa (*LAUGHING*, *SCREAMING*, *SINGING*), solo se si vede o si sente chiaramente; altrimenti niente."
+    },
+    {
+      "nome": "parole_colorate",
+      "tipo": "sottotitolo",
+      "scheda": "\"colori\": {\"parola\": \"verde\"|\"lime\"|\"giallo\"|\"oro\"|\"arancio\"|\"rosso\"|\"corallo\"|\"magenta\"|\"rosa\"|\"viola\"|\"ciano\"|\"biancoBordoRosso\"} per le parole chiave; \"frasi_colorate\": [{\"t\": \"dad@6\", \"colore\": \"rosa\"}] per colorare tutta la frase attiva in quell'istante (le parole già colorate restano).",
+      "componente": "PALETTA in monta.py -> fill e glow della parola",
+      "vibe": "Quasi tutte le frasi hanno un colore. Misurato su sPS9QD1BcEM (2 fps): 16 frasi su 26 tutte di un colore, 6 con 1-3 parole colorate, 4 bianche; su ocTXLR2F5O4 (24 fps nei punti): la maggior parte delle frasi ha almeno una parola colorata e circa metà è tutta colorata. Criterio = significato/emozione: verde sì, felicità, riuscita, saluti contenti; rosso no, fallimento, imprecazioni, paura (*CALL GETS CANCELLED*, WHAT THE F*CK); giallo domande, chiamate, narrazioni; ciano saluti e stupore (WOW, HELLO, IS THIS REAL?), nomi; rosa/magenta amore, mamma e papà, cose rosa (MY MOM, DAD LOVES YOU, COLOR/PINK); viola e corallo frasi di passaggio per variare (I NEED Y'ALL BOYS, ALRIGHT ALRIGHT); oro risate. Una frase può cambiare colore mentre resta (CALL YOUR DAD giallo→ciano, AHHHH verde→ciano in ocTX): non ricreato. Non per chi parla (quello vale solo nella vibe seria).",
+      "quando_no": "Vibe seria (sottotitoli bianchi). Mai un colore che contraddice il lampo dello stesso istante; non tutte le frasi dello stesso colore di fila.",
+      "somiglianza": "Colori di riempimento campionati sugli originali: verde #25fb06, lime #98fb05, giallo #f2fd06, rosso #f70105, magenta #f909f4, ciano #66fcf9, arancio #f7e03a (usati identici).",
+      "visto_in": "26 Shorts",
+      "colori_nuovi": "Campionati l'11/11: rosa #ff2db8 (sPS9 MY MOM / MATTER OF FACT, IUm COLOR), viola #9359eb (X8F I NEED Y'ALL BOYS), corallo #ee5464 (X8F ALRIGHT), oro #f2cb36 (X8F MAKE US LAUGH); aggiunti alla PALETTA di monta.py."
+    },
+    {
+      "nome": "narrazione",
+      "tipo": "sottotitolo",
+      "scheda": "\"narrazioni\": [{\"t\": 2.5, \"durata\": 2.5, \"testo\": \"CAR GETS STUCK\", \"colore\": \"giallo\"}] (asterischi e maiuscole li mette il codice); con \"baseline\" e \"cx\" resta in una posizione sua e convive con il parlato (etichetta)",
+      "componente": "monta.py frasi_speedy(narrazioni) -> FraseGlow corsivo",
+      "vibe": "Spiega l'azione quando nessuno parla o quando l'immagine non basta: *LAUGHING*, *GETS IGNORED*, *TASTES IT*. Giallo per azioni neutre e risate, verde per esiti buoni, rosso per fallimenti. Utile nei primi 3 s se la clip parte senza parlato.",
+      "quando_no": "Sopra un parlato importante (nei suoi secondi il parlato sparisce); più di una ogni 5-6 secondi.",
+      "somiglianza": "Stesso font e alone del glow, in corsivo sintetico; non misurata a parte.",
+      "visto_in": "almeno 20 Shorts (es. t50Z8de_2P8, IUmjjdcRVNc, 4Ssa24ywYYM, NpM_oB_aH0s)",
+      "regola_riccardo_parlato": "Regola di Riccardo (11 nov 2026): 'in tante clip i sottotitoli vengono generati anche se lo streamer non sta parlando o sta facendo versi, in quel caso magari al posto dei sottotitoli mettici cosa sta facendo con gli * o non metterci niente ma cerca di non mettere mai cose che non vengono dette'. trascrivi.py ora toglie le parole non confermate da due prove. Dove lo streamer ride, urla o fa versi senza parole: una narrazione breve tra asterischi che dice cosa fa (*LAUGHING*, *SCREAMING*, *SINGING*), solo se si vede o si sente chiaramente; altrimenti niente."
+    },
+    {
+      "nome": "narrazione_scritta",
+      "tipo": "sottotitolo",
+      "scheda": "narrazione con \"scrivi\": 20 (lettere al secondo), es. {\"t\": 2.5, \"durata\": 2.5, \"testo\": \"CAR GETS STUCK\", \"colore\": \"giallo\", \"scrivi\": 20}",
+      "componente": "Testo.tsx FraseGlow con FraseS.scrivi: il testo compare lettera per lettera restando centrato",
+      "vibe": "Annuncio, attesa, 'be ready': quando la scritta deve farsi leggere come un messaggio che arriva. Bene prima del finale.",
+      "quando_no": "Più di una per clip; su scritte lunghe (oltre 20 lettere ci mette più di un secondo).",
+      "somiglianza": "Non misurata. Velocità ricavata a occhio dai fogli a 15 fps di 5JwFlTVvRTY 11,1-11,9 (circa 16 caratteri in 0,8 s).",
+      "visto_in": [
+        "5JwFlTVvRTY"
+      ]
+    },
+    {
+      "nome": "etichetta_con_freccia",
+      "tipo": "grafica",
+      "scheda": "\"freccia\": {\"t\", \"durata\" (2-2,5), \"chi\": \"sinistra\"|\"destra\"|\"unica\", \"testo\", \"colore\" (nome della PALETTA)}. Niente punta, size o posizione della scritta: le calcola monta.py (piazza_freccia). Una freccia scritta a mano in \"grafiche\" viene scartata.",
+      "componente": "Grafiche.tsx Freccia (curva piena con bordo bianco e alone)",
+      "vibe": "Presenta una persona nei primi 1-3 secondi: *MR BEAST*, *MAGICIAN*, *RANDOM KID*. Negli originali compare insieme a un lampo bianco pieno (vedi lampo_presentazione).",
+      "quando_no": "Dopo i primi 5 secondi; se la persona è già nominata nel parlato e inquadrata da sola.",
+      "somiglianza": "Non misurata. A occhio: prima versione troppo sottile, ridisegnata più spessa con bordo bianco.",
+      "visto_in": [
+        "6lPbHx_dFSo",
+        "t50Z8de_2P8",
+        "auFZ029gEEs",
+        "C4iMYNKbPEg",
+        "hLKXkk9AGMw",
+        "5JwFlTVvRTY",
+        "IUmjjdcRVNc"
+      ],
+      "regola_riccardo": "Regole di Riccardo (11 nov 2026): 'voglio sempre la parola e poi la freccia vicino senza che si sovrappongano'; poi, su Big Smoke: 'qui la freccia è troppo grande e non punta alla faccia come vedi. assicurati che la freccia punti sempre alla persona e che non sia troppo invasiva. sistema lo stile in modo che non faccia errori'.",
+      "come_funziona": "monta.py trova le facce nella base con Vision di macOS (strumenti/volti, solo confidenza >= 0,6 e alte >= 40 px) all'inizio e ogni 0,25 s. 'chi' sceglie la faccia (sinistra/destra = la più a sinistra/destra; unica = deve essercene una sola). Freccia ed etichetta seguono la faccia (campo 'segui'); se la faccia si perde o scappa la freccia si accorcia fino all'ultimo punto sicuro, e sotto 1,5 s non si mette (lo scrive nel log). Punta 15 px fuori dal bordo della faccia, dal lato con più posto, testa diretta al centro della faccia. Freccia alta quanto la faccia, size 60-100 (prima 150): negli originali la freccia è 1,5-1,8 volte la faccia (IUm, C4i), qui più piccola. Etichetta sotto la coda (spostata dentro il quadro di al massimo mezza scritta), o accanto alla coda, o più piccola (68, 56, 46): mai sulla freccia, sulle facce, sui sottotitoli del parlato o fuori dal quadro, in nessun punto dello spostamento. Entra ed esce con la freccia. Se nessuna posizione va bene: niente freccia e niente etichetta.",
+      "limiti": "Faccia grande e bassa nel quadro (Agent 00, faccia 424 px a y 879): nessun posto, la freccia non si mette. Freccia solo da sotto (non esiste la versione che scende dall'alto). Facce di profilo o coperte: Vision può perderle e la freccia si accorcia."
+    },
+    {
+      "nome": "fumetto",
+      "tipo": "sottotitolo",
+      "scheda": "\"testo\": \"fumetto\" (+ \"fumetto\": {...} per ritocchi; colori con \"enfasi\")",
+      "componente": "Testo.tsx RigaFumetto, font Luckiest Guy (Google Fonts), contorno nero e ombra, pop 0,6 -> 1,12 -> 0,97 -> 1 nei primi 4 fotogrammi",
+      "vibe": "Stile 2024: una parola o poche alla volta, a cavallo della giunzione. Con il riempitivo e nelle clip di gioco 9:16.",
+      "quando_no": "Nel formato 3:4 dello stile 2026 (lì glow).",
+      "somiglianza": "Fumetto ciano di hK-eootfNpY = Luckiest Guy: IoU parola intera 0,791 (2 parole, calcolato con PIL, NON in Remotion). Fumetto bianco di N2PIARJ4TFw non misurato.",
+      "visto_in": [
+        "hK-eootfNpY",
+        "N2PIARJ4TFw",
+        "3Y20GSy-k5k",
+        "ZAiZjeWj8KY"
+      ]
+    },
+    {
+      "nome": "outline",
+      "tipo": "sottotitolo",
+      "scheda": "\"testo\": \"outline\" in speedy, oppure lo stile classico",
+      "componente": "Caption.tsx LineSvg con il preset outline del classico (Bebas Neue 400)",
+      "vibe": "Stile 2024 IRL e interviste, 1-2 parole alla volta; colore diverso per chi parla.",
+      "quando_no": "Nel 3:4 2026 (glow).",
+      "somiglianza": "Preset del sistema vivo: sovrapposizione riempimento 0,959, contorno 0,932 (parola BACKGROUND).",
+      "visto_in": [
+        "R-4yG_e_DU0",
+        "7wgyAf3xf3I",
+        "4Aj5Z8odhpc",
+        "cSEfwwZsDAw",
+        "gxUZP1BIjz4"
+      ]
+    },
+    {
+      "nome": "conto_alla_rovescia",
+      "tipo": "sottotitolo",
+      "scheda": "tre narrazioni corte con un colore per numero, es. {\"t\": 5, \"durata\": 0.8, \"testo\": \"3\", \"colore\": \"rosso\"}, poi \"2\" giallo, \"1\" verde",
+      "componente": "narrazione",
+      "vibe": "Attesa prima di una sfida o di un colpo di scena ('wait for it').",
+      "quando_no": "Se nella clip nessuno conta davvero.",
+      "somiglianza": "Non misurata.",
+      "visto_in": [
+        "TRG58mooOps",
+        "FUIKQA8o_6Q",
+        "IUmjjdcRVNc"
+      ]
+    },
+    {
+      "nome": "lampo",
+      "tipo": "effetto",
+      "scheda": "\"lampi\": [{\"t\": \"not@10\", \"colore\": \"#ff2a1a\"}] (rosso), \"#00ff3c\" (verde), \"#fff002\" (giallo), \"#ffffff\" (bianco); facoltativi \"forza\" (0,77) e \"durata\" (0,45 s); ciano \"#0acaca\" (misurato: X8F 1,63 e 18,67)",
+      "componente": "Effetti.tsx Lampi: picco in un fotogramma, calo a coseno, fusione 'scolora' (screen)",
+      "vibe": "Sottolinea il momento: rosso = fallimento, rabbia, 'no' (54 lampi in 23 Shorts); verde = riuscita, 'sì', rivelazione (44 in 21); bianco = stacco (36 in 20); giallo = narrazione, risata (17 in 13). Cade sulla parola o sullo stacco, mai prima.",
+      "quando_no": "Più di uno ogni 3-4 secondi; su un momento debole; colore in contrasto con la parola colorata.",
+      "somiglianza": "Misurata: picco 0,74-0,80, durata mediana 0,40-0,43 s; scarto delle medie RGB contro originale 9,7/255 e 16,0/255 sui due lampi di TRG senza stacco (8,27 e 14,30). Sugli altri lampi provati il lampo cade su uno stacco e il confronto non vale.",
+      "visto_in": "27 Shorts su 41, 161 lampi (riferimenti/lampi.jsonl)",
+      "nota_X8F": "X8FVGWjeEm8 ha 9 lampi in 27 s: verde 0,97 e 15,13, ciano 1,63 e 18,67, bianco 4,83 e 24,90, giallo 7,0, rosso 16,93 e 21,9. Il ciano non era nella libreria: va con stupore e domande (IS THIS REAL?)."
+    },
+    {
+      "nome": "lampo_presentazione",
+      "tipo": "effetto",
+      "scheda": "\"lampi\": [{\"t\": 0.3, \"colore\": \"#ffffff\", \"forza\": 1.0, \"durata\": 0.45}] insieme a freccia + etichetta allo stesso t",
+      "componente": "Effetti.tsx Lampi",
+      "vibe": "Apertura: bianco pieno per 2-3 fotogrammi, sotto compaiono freccia ed etichetta della persona.",
+      "quando_no": "Senza una persona da presentare.",
+      "somiglianza": "Non misurata (visto a 15 fps: IUmjjdcRVNc 1,56, C4iMYNKbPEg 1,80, durata 0,40-0,53 s dal rilevatore).",
+      "visto_in": [
+        "IUmjjdcRVNc",
+        "C4iMYNKbPEg"
+      ]
+    },
+    {
+      "nome": "bianco_e_nero",
+      "tipo": "effetto",
+      "scheda": "\"effetti\": [{\"tipo\": \"bn\", \"t\", \"durata\", \"scuro\": 0.25, \"sfoca\": 0}]",
+      "componente": "Effetti.tsx filtroVideo bn",
+      "vibe": "Fallimento, fermo, 'wasted', *GETS IGNORED*: di solito subito dopo un lampo rosso, 1-2 s, con narrazione rossa.",
+      "quando_no": "Su momenti positivi; più di due volte per clip.",
+      "somiglianza": "Non misurata.",
+      "visto_in": "circa 13 Shorts (es. FUIKQA8o_6Q 7-8, 6lPbHx_dFSo 11, t50Z8de_2P8, MwCMLf7XEXw)"
+    },
+    {
+      "nome": "stacco_glitch_bn",
+      "tipo": "transizione",
+      "scheda": "\"effetti\": [{\"tipo\": \"stacco\", \"t\": <secondo dello stacco>, \"durata\": 0.45}]",
+      "componente": "Effetti.tsx stacco: righe bianche orizzontali per 0,1 s, poi bianco e nero sfocato che torna a colori",
+      "vibe": "Su un cambio d'inquadratura secco, 1-3 s dopo l'apertura o tra due parti della storia.",
+      "quando_no": "Senza un vero stacco nell'immagine; più di 2 per clip.",
+      "somiglianza": "Non misurata. Ricostruita a occhio dai fogli a 15 fps: IUmjjdcRVNc 2,63-3,10 e C4iMYNKbPEg 2,80-3,20.",
+      "visto_in": [
+        "IUmjjdcRVNc",
+        "C4iMYNKbPEg",
+        "hLKXkk9AGMw",
+        "6lPbHx_dFSo"
+      ]
+    },
+    {
+      "nome": "scuro",
+      "tipo": "effetto",
+      "scheda": "\"effetti\": [{\"tipo\": \"scuro\", \"t\", \"durata\", \"forza\": 0.45}]",
+      "componente": "Effetti.tsx Veli",
+      "vibe": "Abbassa lo sfondo dietro una frase importante o un'emoji.",
+      "quando_no": "Su immagini già scure.",
+      "somiglianza": "Non misurata.",
+      "visto_in": "diversi Shorts (TRG58mooOps, t50Z8de_2P8 5-6), non contati"
+    },
+    {
+      "nome": "zoom",
+      "tipo": "effetto",
+      "scheda": "\"zoom\": [{\"t\": \"what@10\", \"durata\": 2.0, \"scala\": 1.15}]",
+      "componente": "Effetti.tsx scalaZoom: entra in 0,12 s, esce in 0,2 s",
+      "vibe": "Reazione forte sulla faccia, insieme al lampo.",
+      "quando_no": "Nel layout diviso zooma tutto il fotogramma compresa la riga bianca (in Speedy zooma un solo riquadro): meglio usarlo nel pieno.",
+      "somiglianza": "Non misurata.",
+      "visto_in": "molti Shorts, non contati"
+    },
+    {
+      "nome": "emoji",
+      "tipo": "grafica",
+      "scheda": "\"icone\": [{\"t\": \"money@1.2\", \"emoji\": \"💵\", \"size\": 110, \"dove\": \"sopra\"|\"sotto\"}] (vedi icona_sottotitolo). Un'emoji in \"grafiche\" viene trattata allo stesso modo: x e y della scheda non contano più.",
+      "componente": "Grafiche.tsx emoji (Apple Color Emoji) con fantasma che si restringe e alone",
+      "vibe": "L'oggetto nominato (tazzina, coppa, cappello, soldi, bandiera) accanto o sopra la scritta, per 1-2 s.",
+      "quando_no": "Più di una alla volta, salvo la fila di emoji (C4i 16-18).",
+      "somiglianza": "Non misurata.",
+      "visto_in": "circa 10 Shorts (MwCMLf7XEXw, 4bdcCE0vJq8, -5XbaQLep4Y, auFZ029gEEs, X8FVGWjeEm8, IUmjjdcRVNc, 5JwFlTVvRTY, C4iMYNKbPEg)",
+      "regola_riccardo": "Regola di Riccardo (11 nov 2026): \"le icone in mezzo o vicino ai sottotitoli devono SEMPRE essere in questa zona indicata\": al centro, subito sopra la riga del sottotitolo oppure subito sotto. Le emoji libere lontano dal testo (in un angolo) non si usano più."
+    },
+    {
+      "nome": "cerchio",
+      "tipo": "grafica",
+      "scheda": "\"grafiche\": [{\"tipo\": \"cerchio\", \"t\", \"durata\", \"x\", \"y\", \"r\", \"colore\"}]",
+      "componente": "Grafiche.tsx Cerchio (rosso con alone, si disegna in 0,25 s)",
+      "vibe": "Indica un dettaglio piccolo: un telefono, una scritta.",
+      "quando_no": "Se il dettaglio è già grande e al centro.",
+      "somiglianza": "Non misurata; a occhio regge il confronto (tmp/vs_grafiche.png).",
+      "visto_in": [
+        "ocTXLR2F5O4",
+        "achSbGYiqrQ",
+        "vMuXpLmOMZc"
+      ]
+    },
+    {
+      "nome": "finale",
+      "tipo": "finale",
+      "scheda": "\"finale\": {\"emoji\": \"😂\", \"testo\": \"HE LOST IT\", \"colore\": \"verde\", \"t\": <facoltativo, predefinito durata-2,4 s>, \"bn\": false}",
+      "componente": "monta.py speedy(): lampo bianco pieno 0,3 s + mosso verticale 0,25 s -> fondo scurito a colori (B/N con \"bn\": true) -> emoji (font 140) con fantasma 3x che si restringe in 0,6 s -> scritta in corsivo -> trattini bianchi che cadono -> nero nell'ultimo 0,5 s, firma sopra. Il parlato si chiude sul lampo.",
+      "vibe": "Battuta di chiusura su tutte le clip 2026 che finiscono su una reazione: 😂 comico, 💀 fallimento/assurdo, 🥶 epico/aura. Scritta verde 4 volte su 6, rossa per i fallimenti.",
+      "quando_no": "Regola di Riccardo aggiornata (11 nov 2026, pomeriggio): \"l'emoji finale lasciala in centro, e magari alza a 3/5 l'uso dell'emoji finale sempre con criterio e come eccezione non come regola\". Quindi finale in circa 3 clip su 5, solo dove la chiusura regge (reazione forte che la scritta rende più divertente). Prima aveva detto: \"non mettercela sempre alla fine… sennò è molto pesante e tante volte rischia di non essere divertente\". Niente finale se la clip finisce su una frase ancora in corso che serve capire, se l'ultima reazione è più forte della battuta (tBJGofnGcS8 finisce senza) o se la vibe è seria.",
+      "somiglianza": "Non misurata numericamente. Struttura ricavata a 15 fps da 6 finali (TRG 28,40, FUI 31,00, C4i 29,63, C1t 40,86, IUm 39,16, 5Jw 12,30). Mosso verticale approssimato (allungamento + sfocatura): il vero ha strisce nette.",
+      "visto_in": [
+        "TRG58mooOps",
+        "IUmjjdcRVNc",
+        "FUIKQA8o_6Q",
+        "C4iMYNKbPEg",
+        "C1t_Vz33Plo",
+        "5JwFlTVvRTY",
+        "NpM_oB_aH0s",
+        "ocTXLR2F5O4",
+        "6_uuWW1RcQ0",
+        "9Aeb-O0Chsg",
+        "SggsKTivDao"
+      ],
+      "regola_riccardo": "Regola di Riccardo aggiornata (11 nov 2026, pomeriggio): \"l'emoji finale lasciala in centro, e magari alza a 3/5 l'uso dell'emoji finale sempre con criterio e come eccezione non come regola\". Quindi finale in circa 3 clip su 5, solo dove la chiusura regge (reazione forte che la scritta rende più divertente). Prima aveva detto: \"non mettercela sempre alla fine… sennò è molto pesante e tante volte rischia di non essere divertente\".",
+      "emoji_al_centro": "Riccardo (11 nov 2026): \"l'emoji finale lasciala in centro\": x 540, 200 px sopra la linea di base della scritta del finale (in ocTX 31,4 l'emoji sta subito sopra la scritta, centrata). Non segue la regola delle icone legate ai sottotitoli.",
+      "fermo": "\"fermo\": true nel finale tiene fermo il video dal lampo in poi (ocTX 31,44-33,0: la posa di Speed resta identica sotto il fondo scurito). Visto a occhio solo in ocTX; negli altri finali la misura del movimento non distingue il fermo dalle particelle e dalla luce che lampeggia, quindi è un'opzione, non il predefinito.",
+      "confronto_ocTX": "ocTX 31,19-33,2 a 24 fps: mosso sfocato chiaro 0,2 s (31,19-31,40) → emoji 😂 subito sopra la scritta *W SHAPE SHIFTING* verde con fantasma dorato che si restringe 31,40-31,73 → fondo scurito a colori e fermo, trattini bianchi → nero 32,65-33,15, firma che resta. Durata 2,2 s (il nostro 2,4 s). Unica differenza vera: il fondo fermo (ora opzione \"fermo\")."
+    },
+    {
+      "nome": "particelle",
+      "tipo": "grafica",
+      "scheda": "\"grafiche\": [{\"tipo\": \"particelle\", \"t\", \"durata\"}] (le mette già il finale)",
+      "componente": "Grafiche.tsx particelle: 40 trattini bianchi che cadono in diagonale",
+      "vibe": "Fondo dei finali.",
+      "quando_no": "Fuori dal finale.",
+      "somiglianza": "Non misurata (a occhio da C4i 30-32, 5Jw 12,6-13,9).",
+      "visto_in": [
+        "C4iMYNKbPEg",
+        "5JwFlTVvRTY",
+        "FUIKQA8o_6Q",
+        "6_uuWW1RcQ0",
+        "TRG58mooOps"
+      ]
+    },
+    {
+      "nome": "firma",
+      "tipo": "grafica",
+      "scheda": "\"firma\": \"@nomecanale\"",
+      "componente": "Grafiche.tsx FirmaSpeedy: piccola, bianca, in basso al centro (90% dell'altezza), resta sopra la dissolvenza a nero",
+      "vibe": "Sempre.",
+      "quando_no": "Mai omessa.",
+      "somiglianza": "Non misurata; a occhio va bene.",
+      "visto_in": "27 Shorts (tutti i 3:4)"
+    },
+    {
+      "nome": "luce_lampeggiante",
+      "tipo": "effetto",
+      "scheda": "predefinita con \"stile\": \"speedy\"; \"luce\": false per spegnerla, \"luce\": {\"forza\": 0.09} per cambiarla",
+      "componente": "Effetti.tsx luceVideo + ClipSpeedy (filtro brightness solo sul video): guadagno casuale ±forza che cambia ogni 1-4 fotogrammi (40/33/18/9%)",
+      "vibe": "Tutte le clip speedy 2025-2026. Riccardo su hLKXkk9AGMw: \"mi piacciono le particelle. Perché, se vedi, vanno da una luce bianca a una nera, flashante leggera sopra la clip\" e \"in tutti i video c'è una luce che flasha, che è una particella leggera sopra il video normale. Tu vedi che c'è un leggero flash bianco e nero. Veloce.\"",
+      "quando_no": "Vibe seria (4Aj5: 3,5 lampeggi/s all'1,4%, come una clip senza). Stile 2024 9:16 (14 Shorts su 14 senza). Non tocca sottotitoli né firma e non ferma l'immagine.",
+      "misura": "strumenti/luce3.py: ogni fotogramma ai fps del file, signalstats YAVG/YMIN/YMAX + scdet sulla fascia alta 0-38% (niente sottotitoli), scarto dalla mediana dei 4 fotogrammi prima e dei 4 dopo, lontano 2 fotogrammi dagli stacchi. Shorts indicati: hLK 11,8/s 4,9% · X8F 11,7/s 7,1% · HZKQ 10,4/s 5,1% · IUm 14,2/s 2,9% (60 fps) e 11,8/s 4,2% (30 fps) · 2lgd 10,5/s 5,9% · sPS9 11,4/s 5,7% · XHZ 10,2/s 6,3% · -o1r 10,8/s 6,3% · 6_uu 11,2/s 6,9% · ocTX 13,4/s 3,7% (60 fps) e 10,8/s 5,9% (30 fps). Chiari e scuri in pari numero ovunque. Durata a 30 fps: 1 fotogramma circa 40%, 2 circa 33%, 3 circa 18%, 4 circa 9%. Controlli: sorgenti di Kai 0,2-0,5/s, nostri video prima della luce 0,3/s. Su tutti i 45 Shorts scaricati (luce.py, 30 fps): i 31 del 2025-2026 hanno 44-88% di fotogrammi con scatto concorde di tutto il quadro, i 14 del 2022-2024 0-24%. A fotogrammi pieni (tmp/nuove/luce_*.jpg) è una velatura di tutto il quadro (più chiaro e slavato / più scuro e contrastato), non particelle né grana; agisce quasi come un guadagno (+2 luma nei neri, +4 nei medi e chiari).",
+      "predefinito_perche": "Le misure confermano Riccardo: c'è in tutti i 10 Shorts indicati e in 31 su 31 del 2025-2026, quindi è predefinita.",
+      "visto_in": "31 Shorts su 31 del 2025-2026"
+    },
+    {
+      "nome": "icona_sottotitolo",
+      "tipo": "grafica",
+      "scheda": "\"icone\": [{\"t\": \"money@1.2\" (la parola: l'icona entra con lei), \"file\": \"icone/police_car_3d.png\" oppure \"emoji\": \"💵\", \"size\": 110, \"dove\": \"sopra\"|\"sotto\", \"alone\": \"#colore\"}]",
+      "componente": "monta.py posa_icone (posizione) + Grafiche.tsx emoji/immagine con fantasma che si restringe e alone",
+      "vibe": "Eccezione stilistica: solo quando una parola evoca un'immagine forte (soldi, animale, oggetto, bandiera), al massimo una o due per clip. Riccardo su X8FVGWjeEm8: \"la grafica dei soldi in mezzo al sottotitolo mi piace. Magari, quando editi, se pensi che ci sta bene, quindi non è una regola, è un'eccezione stilistica. Puoi anche cercare online un'icona…\"; su IUmjjdcRVNc: \"vedi l'icona del coniglio a fianco ai sottotitoli\".",
+      "regola_riccardo": "Regola di Riccardo (11 nov 2026): \"le icone in mezzo o vicino ai sottotitoli devono SEMPRE essere in questa zona indicata\": centro orizzontale della scritta, subito sopra (bordo basso a 20 px dal testo) o subito sotto (bordo alto a 20 px sotto l'ultima riga). Se da un lato non c'è posto (bordo del quadro, firma, altra scritta attiva) va dall'altro; se manca da tutti e due si rimpicciolisce. Entra con la parola ed esce con la frase.",
+      "quando_no": "Più di due per clip; parole astratte; vibe seria. Mai lontano dalla scritta.",
+      "misura": "X8F 1,0: mazzetta di dollari (foto ritagliata) sulla parola MONEY, alta circa 2 volte il testo, entra con la parola e il lampo verde. IUm 1,0: 🎩 a destra di OUT OF A HAT?; IUm 5,0: coniglio vero sotto A BUNNY, circa 3 volte il testo. sPS9 22,5 ❤️‍🩹 sopra *W DAD*. achSb 22,5 logo di Fortnite sopra FORTNITE. i7-dq 14,0 bandiera della Malesia sotto IN MALAYSIA. ocTX 3,3 frutto rosso/verde subito sotto \"SHAPE SHIFTING\". In linea tra le parole: ammessa (sta dentro la riga) ma non ricreata.",
+      "sorgenti_immagini": "Prima l'emoji del sistema; per un'immagine vera la ricerca è libera (Riccardo: \"fagli fare una ricerca autonoma di immagini mi assumo io la responsabilità\"): PNG trasparente, soggetto singolo, leggibile a 80-120 px, in laboratorio/icone/ con provenienza in icone/FONTI.md. Buona raccolta: Microsoft Fluent Emoji 3D (MIT).",
+      "visto_in": [
+        "X8FVGWjeEm8",
+        "IUmjjdcRVNc",
+        "sPS9QD1BcEM",
+        "achSbGYiqrQ",
+        "i7-dqtbjA6Y",
+        "ocTXLR2F5O4"
+      ]
+    }
+  ],
+  "non_ricreati": [
+    {
+      "nome": "esplosione dal basso",
+      "dove": "TRG58mooOps 28,6-30,4",
+      "perche": "è un filmato (fiammata con scintille): da CapCut",
+      "visto_in": 1
+    },
+    {
+      "nome": "mosso radiale / zoom con scia",
+      "dove": "FUIKQA8o_6Q 1,2-1,9 e 2,9-3,3; 4Ssa24ywYYM 15,0",
+      "perche": "in CSS non c'è una sfocatura radiale; si potrebbe imitare con copie del video scalate, ma costa molti render. A 15 fps sembra in parte un vero movimento di camera",
+      "visto_in": 2
+    },
+    {
+      "nome": "ritaglio con alone bianco",
+      "dove": "TRG58mooOps 3,0-4,7; IUmjjdcRVNc 5,0",
+      "perche": "serve l'immagine giusta ogni volta",
+      "visto_in": 2
+    },
+    {
+      "nome": "spinta orizzontale",
+      "dove": "IUmjjdcRVNc 3,70",
+      "perche": "non fatto per tempo; 1 Short",
+      "visto_in": 1
+    },
+    {
+      "nome": "font a pennello",
+      "dove": "5JwFlTVvRTY 0,5-2,0",
+      "perche": "font non identificato",
+      "visto_in": 1
+    },
+    {
+      "nome": "riquadro-classifica",
+      "dove": "cSEfwwZsDAw",
+      "perche": "1 Short",
+      "visto_in": 1
+    },
+    {
+      "nome": "stile bianco/rosso 2025 senza alone",
+      "dove": "SggsKTivDao",
+      "perche": "1 Short",
+      "visto_in": 1
+    },
+    {
+      "nome": "wasted di GTA, rotellina di caricamento",
+      "dove": "6lPbHx_dFSo 17,0; TRG58mooOps 10,7",
+      "perche": "adesivi, 1 Short ciascuno: da CapCut",
+      "visto_in": 1
+    }
+  ],
+  "_nota_suoni": "Misurato su 158 lampi con audio (riferimenti/suoni_lampi.json): 'bassi' = sotto 150 Hz salgono di almeno 10 dB con coda di almeno 0,3 s; 'solo acuti' = sopra 5 kHz salgono di almeno 10 dB e i bassi meno di 6. Nessun file di suoni/approvati/ è stato ritrovato dentro gli Shorts (correlazione massima 0,38): i file collegati sono della stessa famiglia, non lo stesso suono. Vanno confermati a orecchio.",
+  "suoni": [
+    {
+      "nome": "colpo_bassi_rosso",
+      "vibe": "Sul lampo rosso: fallimento, rabbia, 'no', eliminazione.",
+      "quando_no": "Su momenti positivi; se c'è già un urlo forte nello stesso istante.",
+      "come": "Esattamente sul lampo (scarto mediano 0,00 s), coda di circa 1,2 s; volume sotto la voce (0,6-0,7 nelle schede).",
+      "misura": "27 lampi rossi su 54 hanno il colpo di bassi (coda mediana 1,2 s), 6 solo acuti.",
+      "file": [
+        "boom_Impact-Boom.m4a",
+        "boom_Explosion-shock-wave-sonic-boom-3.m4a",
+        "NUOVO_vineboom_Boom-Distorted-Bass-Drop.m4a"
+      ],
+      "scheda": "\"suoni\": [{\"t\": \"no@10\", \"file\": \"boom_Impact-Boom.m4a\", \"volume\": 0.7}]",
+      "visto_in": "23 Shorts con lampi rossi"
+    },
+    {
+      "nome": "colpo_bassi_stacco",
+      "vibe": "Sul lampo bianco di uno stacco o di una presentazione.",
+      "quando_no": "Su stacchi morbidi (dissolvenza).",
+      "come": "Sul lampo, coda mediana 1,7 s.",
+      "misura": "18 lampi bianchi su 36 con colpo di bassi, 5 solo acuti.",
+      "file": [
+        "boom_Impact-Boom.m4a",
+        "NUOVO_bassdrop_Drop-doon-synth.m4a"
+      ],
+      "visto_in": "20 Shorts"
+    },
+    {
+      "nome": "colpo_finale",
+      "vibe": "Sul lampo bianco che apre il finale: il colpo più forte della clip.",
+      "quando_no": "Se la clip non ha il finale.",
+      "come": "Sul lampo del finale, coda lunga 2-3 s mentre compaiono emoji e scritta; la musica continua sotto.",
+      "misura": "Bassi +47,1 dB coda 2,0 s (FUI 30,97), +48,6 dB coda 3,1 s (C4i 29,60), +15,7 dB coda 1,7 s (tBJ 60,60), +11,0 dB (IUm 39,17), +19,2 dB coda 1,0 s (C1t 40,87): 5 finali su 5 con salto dei bassi.",
+      "file": [
+        "NUOVO_bassdrop_Base-drop-Doon.m4a",
+        "boom_Explosion-shock-wave-sonic-boom-3.m4a"
+      ],
+      "scheda": "\"suoni\": [{\"t\": <t del finale>, \"file\": \"NUOVO_bassdrop_Base-drop-Doon.m4a\", \"volume\": 0.8}]",
+      "visto_in": [
+        "FUIKQA8o_6Q",
+        "C4iMYNKbPEg",
+        "tBJGofnGcS8",
+        "IUmjjdcRVNc",
+        "C1t_Vz33Plo",
+        "TRG58mooOps"
+      ]
+    },
+    {
+      "nome": "brillio_verde",
+      "vibe": "Sul lampo verde: riuscita, risposta giusta, rivelazione, cosa che appare.",
+      "quando_no": "Su fallimenti.",
+      "come": "Sul lampo o fino a 0,15 s dopo (TRG 21,50 -> 21,65); solo acuti, niente bassi.",
+      "misura": "21 lampi verdi su 43 con solo acuti, 4 con bassi.",
+      "file": [
+        "ding_1.m4a",
+        "ding_2.m4a",
+        "NUOVO_rivelazione_Magic-reveal.m4a"
+      ],
+      "visto_in": "21 Shorts"
+    },
+    {
+      "nome": "acuto_giallo",
+      "vibe": "Sul lampo giallo: narrazione, risata, battuta.",
+      "quando_no": "Su momenti seri.",
+      "come": "Corto, sul lampo.",
+      "misura": "7 lampi gialli su 16 con solo acuti, 4 con bassi.",
+      "file": [
+        "NUOVO_pop_SFX-POP.m4a",
+        "NUOVO_pop_Pop-lower-telop.m4a"
+      ],
+      "visto_in": "13 Shorts"
+    },
+    {
+      "nome": "beep_conto",
+      "vibe": "Conto alla rovescia 3-2-1.",
+      "quando_no": "Senza conto a schermo.",
+      "come": "Un beep acuto e corto per numero (TRG 23,05 e 23,92).",
+      "misura": "Solo istanti degli attacchi su TRG; timbro non confrontato.",
+      "file": [],
+      "da_capcut": "Effetti sonori -> 'Countdown beep'",
+      "visto_in": [
+        "TRG58mooOps"
+      ]
+    },
+    {
+      "nome": "pop_emoji",
+      "vibe": "Quando compare un'emoji, una freccia o un'etichetta.",
+      "quando_no": "Più di uno ogni 2-3 secondi.",
+      "come": "Sul fotogramma in cui compare.",
+      "misura": "Non misurato negli Shorts (descrizione del sistema vivo).",
+      "file": [
+        "NUOVO_pop_Pop-open-the-lid.m4a",
+        "NUOVO_pop_Pop-tapping-the-mouth.m4a"
+      ],
+      "visto_in": "non verificato"
+    },
+    {
+      "nome": "whoosh_mosso",
+      "vibe": "Sul mosso verticale o su uno stacco veloce.",
+      "quando_no": "Se c'è già il colpo di bassi nello stesso istante.",
+      "come": "0,1 s prima dello stacco.",
+      "misura": "Non misurato negli Shorts.",
+      "file": [
+        "NUOVO_whoosh_Swish-whoosh-large.m4a",
+        "NUOVO_whoosh_Swoosh.m4a"
+      ],
+      "visto_in": "non verificato"
+    },
+    {
+      "nome": "glitch_stacco",
+      "vibe": "Sullo stacco con righe bianche (stacco_glitch_bn).",
+      "quando_no": "Fuori dagli stacchi glitch.",
+      "come": "Sul primo fotogramma delle righe.",
+      "misura": "Non misurato negli Shorts.",
+      "file": [
+        "NUOVO_glitch_Glitch-1.m4a",
+        "NUOVO_glitch_Glitch-2.m4a"
+      ],
+      "visto_in": "non verificato"
+    },
+    {
+      "nome": "whoosh_prima_del_lampo",
+      "vibe": "Lampi colorati di X8F: un fruscio acuto che parte circa 0,27 s prima del lampo e ci arriva sopra (scarto -0,24/-0,29 s su 5 lampi su 9, acuti +10/+27 dB, bassi quasi fermi).",
+      "quando_no": "Sul lampo del finale (lì c'è il colpo di bassi).",
+      "come": "\"suoni\": [{\"t\": <t del lampo>, \"file\": \"NUOVO_whoosh_Swish-whoosh-large.m4a\", \"anticipo\": -0.27, \"volume\": 0.5}]",
+      "misura": "riferimenti/suoni_lampi.json, X8FVGWjeEm8 0,97 1,63 15,13 18,67 21,9.",
+      "file": [
+        "NUOVO_whoosh_Swish-whoosh-large.m4a",
+        "NUOVO_whoosh_Swoosh.m4a"
+      ],
+      "visto_in": [
+        "X8FVGWjeEm8"
+      ],
+      "nota": "file della stessa famiglia, non lo stesso suono: da confermare a orecchio"
+    }
+  ],
+  "musica": [
+    {
+      "titolo": "PASSO BEM SOLTO (Ultra Slowed)",
+      "artista": "ATLXS",
+      "vibe": "Epico, sfida, 'aura', hype, annunci: il brano più usato nel 2026 (4 Shorts tra maggio e settembre).",
+      "quando_no": "Momenti teneri o seri; comico leggero (meglio chess).",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "FUIKQA8o_6Q (4/4 tratti)",
+        "5JwFlTVvRTY (2/1 tratti)",
+        "C4iMYNKbPEg (4/4 tratti)",
+        "4bdcCE0vJq8 (4/5 tratti)"
+      ],
+      "volte": 4,
+      "file": null,
+      "da_capcut": "cercare \"PASSO BEM SOLTO (Ultra Slowed)\" di ATLXS"
+    },
+    {
+      "titolo": "chess (super slowed)",
+      "artista": "joyful",
+      "vibe": "Comico, scherzo, figuraccia leggera, sfida buffa.",
+      "quando_no": "Momenti epici o seri.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "-5XbaQLep4Y (1/3 tratti)",
+        "6lPbHx_dFSo (1/3 tratti)",
+        "NpM_oB_aH0s (2/2 tratti)",
+        "vMuXpLmOMZc (1/3 tratti)"
+      ],
+      "volte": 4,
+      "file": null,
+      "da_capcut": "cercare \"chess (super slowed)\" di joyful"
+    },
+    {
+      "titolo": "chess (slowed)",
+      "artista": "joyful",
+      "vibe": "Comico con tensione: quiz, panico, horror-comico.",
+      "quando_no": "Momenti epici o teneri.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "9Aeb-O0Chsg (1/2 tratti)",
+        "achSbGYiqrQ (1/3 tratti)",
+        "ocTXLR2F5O4 (1/4 tratti)"
+      ],
+      "volte": 3,
+      "file": null,
+      "da_capcut": "cercare \"chess (slowed)\" di joyful",
+      "nota": "Il catalogo vecchio lo dava già come riconosciuto, ma in musica/ non c'è un file con questo nome.",
+      "visto_in_ocTX": "ocTXLR2F5O4 (tratto 24 s): scherzo horror-comico con *WAIT FOR IT*; il file non c'è in musica/ (vedi da-capcut.md)."
+    },
+    {
+      "titolo": "VOCE NA MIRA (Super Slowed)",
+      "artista": "Hwungii & DJ VGK1",
+      "vibe": "Funk brasiliano rallentato: sport, curiosità, epico tranquillo.",
+      "quando_no": "Comico leggero.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "4Ssa24ywYYM (3/4 tratti)",
+        "MwCMLf7XEXw (4/3 tratti)"
+      ],
+      "volte": 2,
+      "file": null,
+      "da_capcut": "cercare \"VOCE NA MIRA (Super Slowed)\" di Hwungii & DJ VGK1"
+    },
+    {
+      "titolo": "HWUNGII (VOCE NA MIRA)",
+      "artista": "Phonk 79",
+      "vibe": "Variante del precedente: stupore, magia (1 tratto in IUm).",
+      "quando_no": "Come sopra.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "IUmjjdcRVNc (1/5 tratti)"
+      ],
+      "volte": 1,
+      "file": null,
+      "da_capcut": "cercare \"HWUNGII (VOCE NA MIRA)\" di Phonk 79",
+      "nota": "Solo 1 tratto: forse lo stesso brano del precedente."
+    },
+    {
+      "titolo": "MONTAGEM ALQUIMIA (ULTRA SLOWED)",
+      "artista": "h6itam, n7san7os & Mc Menor Do Alvorada",
+      "vibe": "Suspense che diventa comico; domanda e rivelazione (TRG).",
+      "quando_no": "Momenti teneri.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "TRG58mooOps (4/4 tratti)"
+      ],
+      "volte": 1,
+      "file": "musica/funk_MONTAGEM-ALQUIMIA.m4a (o funk_MONTAGEM-ALQUIMIA-FUNK.m4a)",
+      "da_capcut": null,
+      "nota": "Collegato solo per nome: non so se il file è la versione ULTRA SLOWED (Shazam sui file in timeout, confronto spettrale non decisivo)."
+    },
+    {
+      "titolo": "LUZ ROJA (Ultra Slowed)",
+      "artista": "bxkq",
+      "vibe": "Gara, sfida a turni, tensione che sale.",
+      "quando_no": "Comico leggero, tenerezza.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "hLKXkk9AGMw (4/3 tratti)"
+      ],
+      "volte": 1,
+      "file": null,
+      "da_capcut": "cercare \"LUZ ROJA (Ultra Slowed)\" di bxkq"
+    },
+    {
+      "titolo": "LUNA BALA (Slowed)",
+      "artista": "Yb Wasg'ood & Ariis",
+      "vibe": "Comico, meme, battute assurde.",
+      "quando_no": "Momenti seri.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "6_uuWW1RcQ0 (2/2 tratti)"
+      ],
+      "volte": 1,
+      "file": null,
+      "da_capcut": "cercare \"LUNA BALA (Slowed)\" di Yb Wasg'ood & Ariis",
+      "nota": "Il catalogo vecchio lo dava come già riconosciuto, ma in musica/ non c'è un file con questo nome."
+    },
+    {
+      "titolo": "Phonks Galácticos",
+      "artista": "SaikoX",
+      "vibe": "Esaltazione comica (Sggs, stile 2025).",
+      "quando_no": "Momenti teneri.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "SggsKTivDao (1/2 tratti)"
+      ],
+      "volte": 1,
+      "file": null,
+      "da_capcut": "cercare \"Phonks Galácticos\" di SaikoX",
+      "nota": "Forse è suoni/riferimenti-clip-virali/musica_side-of-speed_14M.m4a: da confermare a orecchio."
+    },
+    {
+      "titolo": "Prime Calisthenics Aura",
+      "artista": "Calm Genius",
+      "vibe": "Stupore, magia, 'aura' calma (IUm, 4 tratti su 5).",
+      "quando_no": "Comico frenetico.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "IUmjjdcRVNc (4/5 tratti)"
+      ],
+      "volte": 1,
+      "file": null,
+      "da_capcut": "cercare \"Prime Calisthenics Aura\" di Calm Genius"
+    },
+    {
+      "titolo": "Memory Reboot (Slowed)",
+      "artista": "VØJ & Narvent",
+      "vibe": "Ispirazione, nostalgia, idolo (Ronaldo).",
+      "quando_no": "Comico.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "9wm33u5l9NQ (3/3 tratti)"
+      ],
+      "volte": 1,
+      "file": null,
+      "da_capcut": "cercare \"Memory Reboot (Slowed)\" di VØJ & Narvent"
+    },
+    {
+      "titolo": "All The Stars",
+      "artista": "Kendrick Lamar & SZA",
+      "vibe": "Nostalgia e tenerezza su immagini d'archivio.",
+      "quando_no": "Comico; brano molto noto: rischio diritti più alto.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "xuniRm3YHEc (4/5 tratti)"
+      ],
+      "volte": 1,
+      "file": null,
+      "da_capcut": "cercare \"All The Stars\" di Kendrick Lamar & SZA"
+    },
+    {
+      "titolo": "blue (slowed down)",
+      "artista": "yung kai",
+      "vibe": "Tenerezza, famiglia, abbracci.",
+      "quando_no": "Comico, sfida.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "auFZ029gEEs (2/4 tratti)"
+      ],
+      "volte": 1,
+      "file": null,
+      "da_capcut": "cercare \"blue (slowed down)\" di yung kai"
+    },
+    {
+      "titolo": "Kindness Song - Imposter Syndrome (best part only)",
+      "artista": "Two hearts",
+      "vibe": "Tenerezza, gesti gentili (bambini affamati).",
+      "quando_no": "Comico, rabbia.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "t50Z8de_2P8 (3/3 tratti)"
+      ],
+      "volte": 1,
+      "file": null,
+      "da_capcut": "cercare \"Kindness Song - Imposter Syndrome (best part only)\" di Two hearts"
+    },
+    {
+      "titolo": "Hesitations",
+      "artista": "goldenchildren & CORBAL",
+      "vibe": "SERIO: unico brano dei video seri (4Aj5Z8odhpc, attacco di panico di una fan, tratti 8 e 24 s). Elettronica lenta ed emotiva, senza voce. Riccardo: \"quando riconosci questo tipo di video, anche la musica sotto fa tanto\".",
+      "quando_no": "Qualsiasi clip comica o giocosa.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "4Aj5Z8odhpc (2/4 tratti)"
+      ],
+      "volte": 1,
+      "file": null,
+      "da_capcut": "cercare \"Hesitations\" di goldenchildren & CORBAL"
+    },
+    {
+      "titolo": "Wii Shop Channel (Frutiger Aero Bitcrushed Old Speaker Lofi Mix)",
+      "artista": "Nostalgiacore",
+      "vibe": "Tranquillo e buffo: cibo, interviste, assaggi.",
+      "quando_no": "Tensione, rabbia, epico.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "7wgyAf3xf3I (1/2 tratti)",
+        "cSEfwwZsDAw (1/2 tratti)"
+      ],
+      "volte": 2,
+      "file": null,
+      "da_capcut": "cercare \"Wii Shop Channel (Frutiger Aero Bitcrushed Old Speaker Lofi Mix)\" di Nostalgiacore",
+      "nota": "Il catalogo vecchio lo dava come già riconosciuto, ma in musica/ non c'è un file con questo nome."
+    },
+    {
+      "titolo": "Leanin",
+      "artista": "CorMill",
+      "vibe": "Dialogo comico asciutto con il riempitivo (N2, 113 milioni).",
+      "quando_no": "Clip frenetiche.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "N2PIARJ4TFw (3/3 tratti)"
+      ],
+      "volte": 1,
+      "file": "suoni/riferimenti-clip-virali/musica_speed-mrbeast_113M.m4a",
+      "da_capcut": null,
+      "nota": "Collegato per nome del file (estratto dallo Short Speed & MrBeast da 113M = N2PIARJ4TFw); confronto spettrale 0,47, il più alto della riga ma debole."
+    },
+    {
+      "titolo": "get loose freestyle",
+      "artista": "thëkid",
+      "vibe": "Live ferma che diventa rabbia (ZAi, riempitivo).",
+      "quando_no": "Tenerezza.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "ZAiZjeWj8KY (3/4 tratti)"
+      ],
+      "volte": 1,
+      "file": null,
+      "da_capcut": "cercare \"get loose freestyle\" di thëkid"
+    },
+    {
+      "titolo": "Slaptastic",
+      "artista": "Steven Beddall",
+      "vibe": "Comico da cartone, reaction (C1t, 1 tratto).",
+      "quando_no": "Momenti seri.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "C1t_Vz33Plo (1/5 tratti)"
+      ],
+      "volte": 1,
+      "file": null,
+      "da_capcut": "cercare \"Slaptastic\" di Steven Beddall",
+      "nota": "1 solo tratto riconosciuto."
+    },
+    {
+      "titolo": "Waka Waka (This Time for Africa)",
+      "artista": "Shakira",
+      "vibe": "NON è una scelta di montaggio: è con ogni probabilità l'audio del video a cui Speed reagisce (tBJ).",
+      "quando_no": "Sempre: non usarla come base.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "tBJGofnGcS8 (1/7 tratti)",
+        "tBJGofnGcS8 (3/7 tratti)"
+      ],
+      "volte": 2,
+      "file": null,
+      "da_capcut": "cercare \"Waka Waka (This Time for Africa)\" di Shakira",
+      "nota": "Due versioni riconosciute nello stesso Short."
+    },
+    {
+      "titolo": "Passo Bem Solto",
+      "artista": "Sentiment Point",
+      "vibe": "Variante del brano più usato (1 tratto di 4bdc).",
+      "quando_no": "Come PASSO BEM SOLTO.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "4bdcCE0vJq8 (1/5 tratti)"
+      ],
+      "volte": 1,
+      "file": null,
+      "da_capcut": "cercare \"Passo Bem Solto\" di Sentiment Point",
+      "nota": "Probabilmente lo stesso brano riconosciuto in un'altra versione."
+    },
+    {
+      "titolo": "Sweet",
+      "artista": "kovEN",
+      "vibe": "1 tratto all'inizio di 4Ssa: probabilmente audio della scena, non base.",
+      "quando_no": "Non usarla come base.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "4Ssa24ywYYM (1/4 tratti)"
+      ],
+      "volte": 1,
+      "file": null,
+      "da_capcut": "cercare \"Sweet\" di kovEN",
+      "nota": "Riconoscimento isolato."
+    },
+    {
+      "titolo": "Love Me Scoobs",
+      "artista": "Ob1",
+      "vibe": "1 tratto di xuni: probabilmente audio d'archivio.",
+      "quando_no": "Non usarla come base.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "xuniRm3YHEc (1/5 tratti)"
+      ],
+      "volte": 1,
+      "file": null,
+      "da_capcut": "cercare \"Love Me Scoobs\" di Ob1",
+      "nota": "Riconoscimento isolato."
+    },
+    {
+      "titolo": "Tuesday (feat. Novacringe)",
+      "artista": "RedTheThing",
+      "vibe": "1 tratto di ZAi: probabilmente audio della live.",
+      "quando_no": "Non usarla come base.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "ZAiZjeWj8KY (1/4 tratti)"
+      ],
+      "volte": 1,
+      "file": null,
+      "da_capcut": "cercare \"Tuesday (feat. Novacringe)\" di RedTheThing",
+      "nota": "Riconoscimento isolato."
+    },
+    {
+      "titolo": "World Disasters",
+      "artista": "Sakti Jhodhan",
+      "vibe": "1 tratto di gxUZ: dubbio.",
+      "quando_no": "Non usarla senza ascoltarla.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "gxUZP1BIjz4 (1/4 tratti)"
+      ],
+      "volte": 1,
+      "file": null,
+      "da_capcut": "cercare \"World Disasters\" di Sakti Jhodhan",
+      "nota": "Riconoscimento isolato, forse sbagliato."
+    },
+    {
+      "titolo": "Ziguli il signore del tempo",
+      "artista": "L.A.M.",
+      "vibe": "1 tratto di gxUZ: dubbio.",
+      "quando_no": "Non usarla senza ascoltarla.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [
+        "gxUZP1BIjz4 (1/4 tratti)"
+      ],
+      "volte": 1,
+      "file": null,
+      "da_capcut": "cercare \"Ziguli il signore del tempo\" di L.A.M.",
+      "nota": "Riconoscimento isolato, forse sbagliato."
+    },
+    {
+      "titolo": "funk_BRAZILIAN-FUNK.m4a",
+      "artista": "non riconosciuto",
+      "vibe": "tensione, azione (descrizione del sistema vivo)",
+      "quando_no": "non verificato sugli Shorts",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [],
+      "volte": 0,
+      "file": "musica/funk_BRAZILIAN-FUNK.m4a",
+      "nota": "file già in musica/, non ritrovato negli Shorts di Speedy"
+    },
+    {
+      "titolo": "funk_MONTAGEM-PERIGOSA.m4a",
+      "artista": "non riconosciuto",
+      "vibe": "tensione, azione",
+      "quando_no": "non verificato sugli Shorts",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [],
+      "volte": 0,
+      "file": "musica/funk_MONTAGEM-PERIGOSA.m4a",
+      "nota": "file già in musica/, non ritrovato negli Shorts di Speedy"
+    },
+    {
+      "titolo": "meme_Carmen-Prelude-funny.m4a",
+      "artista": "non riconosciuto",
+      "vibe": "comico, imbarazzo",
+      "quando_no": "non verificato sugli Shorts",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [],
+      "volte": 0,
+      "file": "musica/meme_Carmen-Prelude-funny.m4a",
+      "nota": "file già in musica/, non ritrovato negli Shorts di Speedy"
+    },
+    {
+      "titolo": "meme_Cheerful-piano.m4a",
+      "artista": "non riconosciuto",
+      "vibe": "comico leggero",
+      "quando_no": "non verificato sugli Shorts",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [],
+      "volte": 0,
+      "file": "musica/meme_Cheerful-piano.m4a",
+      "nota": "file già in musica/, non ritrovato negli Shorts di Speedy"
+    },
+    {
+      "titolo": "phonk_Graveyard-Phonk-Slowed.m4a",
+      "artista": "non riconosciuto",
+      "vibe": "tensione, rabbia",
+      "quando_no": "non verificato sugli Shorts",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [],
+      "volte": 0,
+      "file": "musica/phonk_Graveyard-Phonk-Slowed.m4a",
+      "nota": "file già in musica/, non ritrovato negli Shorts di Speedy"
+    },
+    {
+      "titolo": "phonk_slowed-phonk.m4a",
+      "artista": "non riconosciuto",
+      "vibe": "tensione, discorso con riempitivo",
+      "quando_no": "non verificato sugli Shorts",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [],
+      "volte": 0,
+      "file": "musica/phonk_slowed-phonk.m4a",
+      "nota": "file già in musica/, non ritrovato negli Shorts di Speedy"
+    },
+    {
+      "titolo": "phonk_Untitled-Super-Slowed.m4a",
+      "artista": "non riconosciuto",
+      "vibe": "tensione",
+      "quando_no": "non verificato sugli Shorts",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce (scheda: \"musica\": {\"file\": ..., \"db_sotto_voce\": 8-12}); sul finale continua sotto il colpo di bassi e si chiude con la dissolvenza a nero. Volume rispetto alla voce NON misurato negli Shorts (la voce copre la musica).",
+      "visto_in": [],
+      "volte": 0,
+      "file": "musica/phonk_Untitled-Super-Slowed.m4a",
+      "nota": "file già in musica/, non ritrovato negli Shorts di Speedy"
+    },
+    {
+      "titolo": "MONTAGEM SANTA FE 2",
+      "artista": "qaraqshy & Dj B7 o Piranhão",
+      "vibe": "Hype, reaction a un edit (2lgdjn_eXok, 3 tratti su 4).",
+      "quando_no": "Momenti teneri o seri.",
+      "come": "Dall'inizio alla fine, costante e bassa sotto la voce.",
+      "file": null,
+      "visto_in": [
+        "2lgdjn_eXok"
+      ]
+    },
+    {
+      "titolo": "MONTAGEM ALQUIMIA (SUPER SLOWED)",
+      "artista": "h6itam, n7san7os & Mc Menor Do Alvorada",
+      "vibe": "Variante di MONTAGEM ALQUIMIA: comico con imbarazzo (\"i don't know him\", -o1r42w3ktA).",
+      "quando_no": "Momenti teneri.",
+      "come": "Come MONTAGEM ALQUIMIA.",
+      "file": "musica/funk_MONTAGEM-ALQUIMIA.m4a (forse; versione non confermata)",
+      "visto_in": [
+        "-o1r42w3ktA"
+      ]
+    },
+    {
+      "titolo": "Dj Jab Jab Baje Ge",
+      "artista": "Kundan Pritam",
+      "vibe": "1 tratto di i7-dqtbjA6Y (Malesia, mercato): probabilmente audio del posto, non base.",
+      "quando_no": "Non usarla come base.",
+      "come": "-",
+      "file": null,
+      "visto_in": [
+        "i7-dqtbjA6Y"
+      ]
+    }
+  ],
+  "vibe": {
+    "_come_si_usa": "Prima di montare si riconosce la vibe dal contenuto (di cosa parla, tono della voce, cosa succede) e si applicano le sue scelte. Nella scheda: \"vibe\": \"serio\" mette in un colpo solo i valori predefiniti della vibe seria (monta.py, VIBE); le altre vibe si fanno a mano con i campi di sempre. Quello che la scheda scrive vince sempre.",
+    "comico": {
+      "si_riconosce": "figuraccia, scherzo, battuta, risata, reazione esagerata (X8F, ocTX, achSb, 6_uu, hLK)",
+      "sottotitoli": "glow con molti colori (frasi intere colorate per emozione)",
+      "effetti": "lampi ogni 3-5 s (verde, rosso, ciano, giallo, bianco), B/N sul fallimento, zoom sulla faccia, stacco glitch",
+      "luce": "sì",
+      "icone": "0-2 dove una parola evoca un'immagine",
+      "finale": "spesso (😂, 💀)",
+      "musica": "chess (slowed/super slowed), LUNA BALA, MONTAGEM ALQUIMIA, LUZ ROJA"
+    },
+    "assurdo": {
+      "si_riconosce": "cosa senza senso o incredibile (shape shifting, mago, 'GTA mi ha rotto')",
+      "sottotitoli": "glow colorato, narrazioni *WAIT FOR IT*",
+      "effetti": "lampi, conto alla rovescia, B/N",
+      "luce": "sì",
+      "icone": "sì se c'è l'oggetto",
+      "finale": "spesso (💀 o 😂)",
+      "musica": "chess (slowed), MONTAGEM ALQUIMIA"
+    },
+    "epico": {
+      "si_riconosce": "sfida, gara, sport, aura, annuncio (FUI, 4Ssa, hLK, C4i)",
+      "sottotitoli": "glow, verde e giallo",
+      "effetti": "lampi verdi e bianchi, mosso, conto alla rovescia",
+      "luce": "sì",
+      "icone": "rare",
+      "finale": "a volte (🥶)",
+      "musica": "PASSO BEM SOLTO, LUZ ROJA, VOCE NA MIRA"
+    },
+    "tenero": {
+      "si_riconosce": "famiglia, gesti gentili, abbracci (sPS9, auFZ, t50Z)",
+      "sottotitoli": "glow con rosa e verde",
+      "effetti": "pochi lampi verdi, B/N breve",
+      "luce": "sì",
+      "icone": "cuore ❤️‍🩹 sopra la scritta (sPS9)",
+      "finale": "a volte (*W DAD*)",
+      "musica": "blue (slowed down), Kindness Song"
+    },
+    "nostalgia_comica": {
+      "si_riconosce": "'siamo vecchi', cartoni, ricordi presi in giro (6wwf)",
+      "sottotitoli": "glow colorato",
+      "effetti": "lampi",
+      "luce": "sì",
+      "icone": "rare",
+      "finale": "💔 *END OF AN ERA*",
+      "musica": "non riconosciuta in 6wwf"
+    },
+    "serio": {
+      "si_riconosce": "emergenza, malessere, dolore, storia triste: chi parla è preoccupato, nessuno scherza (4Aj5Z8odhpc: una fan ha un attacco di panico e Speed la aiuta a respirare)",
+      "regola_riccardo": "Riccardo (11 nov 2026): \"Questo mi piace perché è un video più serio, e anche questi video seri sono sempre un'eccezione. Ma quando li riconosci, quando vengono fuori, vedi che comunque c'è meno giocosità, anche nei sottotitoli, che sono bianchi. Quindi aggiungilo allo spettro di vibe che tiri fuori dai video e, quando riconosci questo tipo di video, anche la musica sotto fa tanto.\" Si usa solo quando la clip è davvero seria.",
+      "misure_4Aj5": "Sottotitoli 1-2 parole (stile 2024): bianchi per Speed, magenta per la ragazza: il colore serve solo a dire chi parla, nessuna parola colorata per enfasi. Lampi: 0. Emoji e icone: 0. Finale: no. Effetti: immagine desaturata per tutta la clip (saturazione media 9,9 contro 14,8-24,6 delle clip giocose misurate) e uno zoom lento. Luce che lampeggia: 3,5/s all'1,4% (le giocose 10-14/s al 3-7%): di fatto assente. Stacchi: 26 in 36,8 s (0,7 al secondo, montaggio che segue il parlato). Musica: Hesitations (goldenchildren & CORBAL), elettronica lenta ed emotiva, per tutta la clip in due tratti riconosciuti; volume rispetto alla voce non stimato (serviva separare la voce dello Short, non fatto).",
+      "scelte": "\"vibe\": \"serio\" → niente colori, niente frasi colorate, niente lampi, zoom, effetti, icone e finale, niente luce, saturazione 0,6. Si possono riaccendere dalla scheda (es. \"colori\" per distinguere chi parla).",
+      "musica": "Hesitations (goldenchildren & CORBAL) — file da prendere (da-capcut.md); in mancanza nessun brano dei file attuali va bene (sono funk, phonk e meme).",
+      "gli_altri_quattro": "achSbGYiqrQ comico-panico (telefono nel ghiaccio), 6wwf_egg1E0 nostalgia comica, SggsKTivDao esaltazione comica (FIFA president), i7-dqtbjA6Y curiosità comica (Rolex da 30 $): non seri."
+    }
+  }
+}
