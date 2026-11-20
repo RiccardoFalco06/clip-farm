@@ -1,0 +1,33 @@
+{
+ "id": "mqy_SFcmHYQ",
+ "data": "20250330",
+ "url": "https://www.youtube.com/watch?v=fK85SQzm0Z0",
+ "titolo_live": "irl stream in Shanghai, China 🇨🇳",
+ "trovata": true,
+ "inizio_in_live": 22574.64,
+ "fine_in_live": 22708.06,
+ "gruppi_parole": 16,
+ "copertura_audio": 0.54,
+ "pezzi_speedy": [
+  {
+   "clip": [
+    1.75,
+    5.5
+   ],
+   "sorgente": [
+    54.24,
+    57.99
+   ]
+  },
+  {
+   "clip": [
+    5.5,
+    11.0
+   ],
+   "sorgente": [
+    97.82,
+    103.32
+   ]
+  }
+ ]
+}

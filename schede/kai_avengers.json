@@ -1,0 +1,9 @@
+{"id":"kai_avengers","sorgente":"/Users/riccardofalco/Projects/clip-farm/registrazioni/prova/kai_10min.ts","inizio":424.9,"fine":436.4,
+ "layout":{"tipo":"diviso","facecam":[0,265,397,222],"gioco_cx":960},
+ "enfasi":{"crazy":"ciano","Avengers":"magenta"},
+ "lampi":[],
+ "zoom":[{"t":"Avengers","durata":1.6,"scala":1.15}],
+ "suoni":[{"t":0,"file":"NUOVO_whoosh_Swish.m4a","volume":0.6},
+          {"t":"Avengers","anticipo":-0.5,"file":"NUOVO_whoosh_Swoosh.m4a","volume":0.7}],
+ "musica":{"file":"funk_MONTAGEM-ALQUIMIA.m4a"},
+ "firma":"@clipfarm","uscita":"~/Desktop/Clip prova 2 - Kai Avengers.mp4"}

@@ -1,0 +1,53 @@
+{
+ "id": "6zD0KX7ZL3M",
+ "data": "20250622",
+ "url": "https://www.youtube.com/watch?v=3Zb-eInwqCs",
+ "titolo_live": "NO PAIN NO GAIN + IRL HOT CHIP CHALLENGE 🌶️",
+ "trovata": true,
+ "inizio_in_live": 380.74,
+ "fine_in_live": 566.16,
+ "gruppi_parole": 52,
+ "copertura_audio": 0.74,
+ "pezzi_speedy": [
+  {
+   "clip": [
+    0.25,
+    5.25
+   ],
+   "sorgente": [
+    30.0,
+    35.0
+   ]
+  },
+  {
+   "clip": [
+    7.0,
+    10.25
+   ],
+   "sorgente": [
+    68.84,
+    72.09
+   ]
+  },
+  {
+   "clip": [
+    11.25,
+    18.5
+   ],
+   "sorgente": [
+    111.4,
+    118.65
+   ]
+  },
+  {
+   "clip": [
+    18.75,
+    23.5
+   ],
+   "sorgente": [
+    123.69,
+    128.44
+   ]
+  }
+ ]
+}

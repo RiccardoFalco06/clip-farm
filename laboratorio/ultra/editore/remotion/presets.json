@@ -1,0 +1,25 @@
+{
+  "_nota": "Misure prese da clip di Speedy Boykins a 1080 px di larghezza. Sopra l'originale, sotto la copia: ~/Desktop/Confronto sottotitoli.png",
+  "outline": {
+    "uso": "clip 9:16 a schermo pieno o diviso: una parola alla volta",
+    "formato": "1080x1920",
+    "font": "Bebas Neue 400",
+    "line": {"style": "outline", "cx": 540, "baseline": 1058, "size": 200, "tracking": 0, "stroke": 22, "join": "round"},
+    "verifica": "sovrapposizione riempimento 0.959, contorno 0.932, riquadro identico (parola BACKGROUND)"
+  },
+  "glow": {
+    "uso": "clip 3:4 stile edit: frase che si costruisce parola per parola sulla giunzione facecam/contenuto",
+    "formato": "1080x1440",
+    "font": "Figtree 900",
+    "line": {"style": "glow", "cx": 534, "baseline": 712, "size": 72, "tracking": 0.115, "scaleX": 0.94, "glowBlur": 5, "glowAlpha": 0.55, "shadow": [3, 5, 3, 0.9]},
+    "interlinea": 67,
+    "colori": {
+      "bianco": {},
+      "biancoBordoRosso": {"glow": "#ff2a10", "edge": "#ff5a4a", "edgeW": 1.6},
+      "rosso": {"fill": "#f53d28", "fill2": "#f62812", "glow": "#ff2a10"},
+      "rossoPieno": {"fill": "#f20206", "glow": "#ff0000"},
+      "giallo": {"fill": "#fbec12", "glow": "#ffe600"}
+    },
+    "verifica": "primo su ~300 font per forma delle lettere (0.89) e per larghezze (errore 4%); lettere entro 1-3 px. Font originale non dimostrato; verde, viola e ciano non ancora misurati"
+  }
+}

@@ -1,0 +1,148 @@
+{
+ "funk_BRAZILIAN-FUNK": [
+  {
+   "titolo": "Pa Ta",
+   "artista": "Emerel Gray & Infraction",
+   "genere": "Electronic",
+   "tratti": [
+    0,
+    8,
+    16,
+    24
+   ]
+  },
+  {
+   "titolo": "Sequência Do Mega (feat. MC MN & Mc Vuk Vuk)",
+   "artista": "DJ DK BEATS",
+   "genere": "Brazilian",
+   "tratti": [
+    32
+   ]
+  },
+  {
+   "titolo": "Lights Camera Action (Extended Mix)",
+   "artista": "Kylie Minogue",
+   "genere": "Pop",
+   "tratti": [
+    48
+   ]
+  }
+ ],
+ "funk_MONTAGEM-ALQUIMIA-FUNK": [
+  {
+   "titolo": "Hyrule Nights",
+   "artista": "Arvo Party",
+   "genere": "Electronica",
+   "tratti": [
+    0
+   ]
+  },
+  {
+   "titolo": "Oak Avenue Blues",
+   "artista": "Suckboomin",
+   "genere": "Dance",
+   "tratti": [
+    8
+   ]
+  },
+  {
+   "titolo": "Firestone (feat. Conrad Sewell)",
+   "artista": "Kygo",
+   "genere": "Dance",
+   "tratti": [
+    24
+   ]
+  },
+  {
+   "titolo": "MONTAGEM ALQUIMIA (Ultra Slowed)",
+   "artista": "n7san7os",
+   "genere": "Baile Funk",
+   "tratti": [
+    32,
+    40
+   ]
+  }
+ ],
+ "funk_MONTAGEM-ALQUIMIA": [
+  {
+   "titolo": "MONTAGEM ALQUIMIA",
+   "artista": "h6itam, n7san7os & Mc Menor Do Alvorada",
+   "genere": "Electronic",
+   "tratti": [
+    0,
+    8,
+    16,
+    32,
+    40,
+    48
+   ]
+  }
+ ],
+ "funk_MONTAGEM-PERIGOSA": [
+  {
+   "titolo": "MONTAGEM PERIGOSA",
+   "artista": "KVRXD, SEKIMANE & dj Samir",
+   "genere": "Electronic",
+   "tratti": [
+    8,
+    16,
+    24,
+    40,
+    48
+   ]
+  }
+ ],
+ "meme_Carmen-Prelude-funny": [
+  {
+   "titolo": "Carmen Prelude (Piano Accompaniment Ver.)",
+   "artista": "yo suzuki",
+   "genere": "Comedy",
+   "tratti": [
+    0
+   ]
+  }
+ ],
+ "meme_Cheerful-piano": [],
+ "phonk_Graveyard-Phonk-Slowed": [
+  {
+   "titolo": "Glock",
+   "artista": "ERMOLINXXX",
+   "genere": "Rap",
+   "tratti": [
+    48
+   ]
+  }
+ ],
+ "phonk_slowed-phonk": [
+  {
+   "titolo": "smezir 2 (Super Slowed)",
+   "artista": "ilyhiryu",
+   "genere": "Electronic",
+   "tratti": [
+    16
+   ]
+  },
+  {
+   "titolo": "FUNK DO VIOLIN (SUPER SLOWED)",
+   "artista": "DJ JO4B, DJ VNGX & Mc Rd",
+   "genere": "Electronic",
+   "tratti": [
+    48
+   ]
+  }
+ ],
+ "phonk_Untitled-Super-Slowed": [
+  {
+   "titolo": "Untitled #13 (Super Slowed)",
+   "artista": "glwzbll",
+   "genere": "Dance",
+   "tratti": [
+    0,
+    16,
+    32,
+    40,
+    48
+   ]
+  }
+ ]
+}

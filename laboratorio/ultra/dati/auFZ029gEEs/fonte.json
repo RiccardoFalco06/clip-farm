@@ -1,0 +1,63 @@
+{
+ "id": "auFZ029gEEs",
+ "data": "20260528",
+ "url": "https://www.youtube.com/watch?v=VZfk2anDdY8",
+ "titolo_live": "irl stream in Jamaica 🇯🇲",
+ "trovata": true,
+ "inizio_in_live": 1263.36,
+ "fine_in_live": 1573.6,
+ "gruppi_parole": 58,
+ "copertura_audio": 0.66,
+ "pezzi_speedy": [
+  {
+   "clip": [
+    0.25,
+    4.5
+   ],
+   "sorgente": [
+    214.1,
+    218.35
+   ]
+  },
+  {
+   "clip": [
+    7.0,
+    11.0
+   ],
+   "sorgente": [
+    225.39,
+    229.39
+   ]
+  },
+  {
+   "clip": [
+    11.25,
+    14.75
+   ],
+   "sorgente": [
+    233.94,
+    237.44
+   ]
+  },
+  {
+   "clip": [
+    14.75,
+    17.0
+   ],
+   "sorgente": [
+    245.45,
+    247.7
+   ]
+  },
+  {
+   "clip": [
+    19.0,
+    27.5
+   ],
+   "sorgente": [
+    256.99,
+    265.49
+   ]
+  }
+ ]
+}

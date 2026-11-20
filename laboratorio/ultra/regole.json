@@ -1,0 +1,12 @@
+{
+ "pause": [],
+ "nota_pause": "18/11: pausa GTA 6 tolta, Riccardo: avanti con speedy-ultra, live ferme",
+ "obiettivo_allenamento": 9.5,
+ "obiettivo_verifica": 8.5,
+ "giri_senza_migliorare": 3,
+ "giri_massimi": 15,
+ "modello_correttore": "claude-opus-5-5",
+ "scala_render_allenamento": 0.5,
+ "disco_minimo_gb": 10,
+ "nota_disco": "19/11 notte GTA 6: 10 GB così la sentinella (soglia 6 GB) può registrare; l'ultra si ferma prima di clip farm"
+}

@@ -1,0 +1,63 @@
+{
+ "id": "hLKXkk9AGMw",
+ "data": "20260513",
+ "url": "https://www.youtube.com/watch?v=S2zQ2pdp3bs",
+ "titolo_live": "irl stream in Bahamas 🇧🇸 + Shark Diving 🦈",
+ "trovata": true,
+ "inizio_in_live": 8663.19,
+ "fine_in_live": 8860.52,
+ "gruppi_parole": 20,
+ "copertura_audio": 0.46,
+ "pezzi_speedy": [
+  {
+   "clip": [
+    0.0,
+    2.5
+   ],
+   "sorgente": [
+    30.0,
+    32.5
+   ]
+  },
+  {
+   "clip": [
+    4.75,
+    10.0
+   ],
+   "sorgente": [
+    152.67,
+    157.92
+   ]
+  },
+  {
+   "clip": [
+    9.75,
+    12.0
+   ],
+   "sorgente": [
+    158.82,
+    161.07
+   ]
+  },
+  {
+   "clip": [
+    11.5,
+    13.5
+   ],
+   "sorgente": [
+    165.33,
+    167.33
+   ]
+  },
+  {
+   "clip": [
+    20.25,
+    22.25
+   ],
+   "sorgente": [
+    150.88,
+    152.88
+   ]
+  }
+ ]
+}

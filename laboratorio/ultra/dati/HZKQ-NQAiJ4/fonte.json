@@ -1,0 +1,53 @@
+{
+ "id": "HZKQ-NQAiJ4",
+ "data": "20260501",
+ "url": "https://www.youtube.com/watch?v=8XtHTeYZfBE",
+ "titolo_live": "iShowSpeed's First Time In Barbados! 🇧🇧",
+ "trovata": true,
+ "inizio_in_live": 3880.17,
+ "fine_in_live": 3964.0,
+ "gruppi_parole": 27,
+ "copertura_audio": 0.75,
+ "pezzi_speedy": [
+  {
+   "clip": [
+    0.0,
+    4.0
+   ],
+   "sorgente": [
+    30.0,
+    34.0
+   ]
+  },
+  {
+   "clip": [
+    4.5,
+    6.25
+   ],
+   "sorgente": [
+    39.93,
+    41.68
+   ]
+  },
+  {
+   "clip": [
+    6.75,
+    10.5
+   ],
+   "sorgente": [
+    54.25,
+    58.0
+   ]
+  },
+  {
+   "clip": [
+    13.5,
+    20.0
+   ],
+   "sorgente": [
+    71.26,
+    77.76
+   ]
+  }
+ ]
+}

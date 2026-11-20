@@ -1,0 +1,9 @@
+{"id":"kai_windpipe","sorgente":"/Users/riccardofalco/Projects/clip-farm/registrazioni/prova/kai_10min.ts","inizio":246.4,"fine":277.2,
+ "layout":{"tipo":"diviso","facecam":[0,265,397,222],"gioco_cx":960},
+ "enfasi":{"windpipe":"magenta","respect":"ciano","shit":"magenta","genius":"ciano"},
+ "lampi":[],
+ "zoom":[{"t":"shit","durata":2.0,"scala":1.15}],
+ "suoni":[{"t":0,"file":"NUOVO_whoosh_Swish.m4a","volume":0.6},
+          {"t":"shit","anticipo":-0.6,"file":"boom_Impact-Boom.m4a","volume":0.7}],
+ "musica":{"file":"phonk_Graveyard-Phonk-Slowed.m4a"},
+ "firma":"@clipfarm","uscita":"~/Desktop/Clip prova 3 - Kai FIB.mp4"}

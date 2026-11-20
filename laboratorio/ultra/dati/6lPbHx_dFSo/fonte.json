@@ -1,0 +1,63 @@
+{
+ "id": "6lPbHx_dFSo",
+ "data": "20260715",
+ "url": "https://www.youtube.com/watch?v=mZt8xZA21pc",
+ "titolo_live": "Mr Beast Introduced Me To 50 Streamers..",
+ "trovata": true,
+ "inizio_in_live": 197.92,
+ "fine_in_live": 478.88,
+ "gruppi_parole": 30,
+ "copertura_audio": 0.65,
+ "pezzi_speedy": [
+  {
+   "clip": [
+    1.0,
+    5.0
+   ],
+   "sorgente": [
+    30.02,
+    34.02
+   ]
+  },
+  {
+   "clip": [
+    6.0,
+    9.0
+   ],
+   "sorgente": [
+    38.56,
+    41.56
+   ]
+  },
+  {
+   "clip": [
+    10.25,
+    14.25
+   ],
+   "sorgente": [
+    47.03,
+    51.03
+   ]
+  },
+  {
+   "clip": [
+    17.25,
+    19.75
+   ],
+   "sorgente": [
+    54.69,
+    57.19
+   ]
+  },
+  {
+   "clip": [
+    21.25,
+    24.25
+   ],
+   "sorgente": [
+    66.61,
+    69.61
+   ]
+  }
+ ]
+}

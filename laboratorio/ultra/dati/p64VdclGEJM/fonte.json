@@ -1,0 +1,43 @@
+{
+ "id": "p64VdclGEJM",
+ "data": "20260331",
+ "url": "https://www.youtube.com/watch?v=0bular7fNUY",
+ "titolo_live": "IShowSpeed \"SAY WALLAHI\" Original Stream",
+ "trovata": true,
+ "inizio_in_live": 27.36,
+ "fine_in_live": 165.96,
+ "gruppi_parole": 56,
+ "copertura_audio": 0.49,
+ "pezzi_speedy": [
+  {
+   "clip": [
+    15.5,
+    17.5
+   ],
+   "sorgente": [
+    32.56,
+    34.56
+   ]
+  },
+  {
+   "clip": [
+    19.0,
+    24.5
+   ],
+   "sorgente": [
+    55.73,
+    61.23
+   ]
+  },
+  {
+   "clip": [
+    24.5,
+    34.5
+   ],
+   "sorgente": [
+    83.06,
+    93.06
+   ]
+  }
+ ]
+}

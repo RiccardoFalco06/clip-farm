@@ -1,0 +1,101 @@
+{
+ "fase": "allenamento",
+ "giro": 5,
+ "storia": [
+  {
+   "giro": 1,
+   "media": 3.36,
+   "sezioni": {
+    "effetti_visivi": 2.0,
+    "musica": 2.25,
+    "scelta_pezzi": 2.38,
+    "grafiche": 2.75,
+    "suoni": 2.75,
+    "sottotitoli_colori": 2.88,
+    "hook": 3.0,
+    "finale": 3.25,
+    "struttura": 3.5,
+    "ritmo_tagli": 3.62,
+    "storia_valore": 4.12,
+    "inquadratura": 4.38,
+    "sincronizzazione": 4.75,
+    "sottotitoli_testo": 5.25
+   }
+  },
+  {
+   "giro": 2,
+   "media": 4.1,
+   "sezioni": {
+    "scelta_pezzi": 2.88,
+    "musica": 2.88,
+    "hook": 3.12,
+    "struttura": 3.38,
+    "grafiche": 3.62,
+    "effetti_visivi": 3.75,
+    "ritmo_tagli": 4.12,
+    "storia_valore": 4.38,
+    "finale": 4.62,
+    "suoni": 4.62,
+    "inquadratura": 4.75,
+    "sottotitoli_colori": 4.88,
+    "sincronizzazione": 5.62,
+    "sottotitoli_testo": 5.88
+   }
+  },
+  {
+   "giro": 3,
+   "media": 3.88,
+   "sezioni": {
+    "musica": 2.12,
+    "scelta_pezzi": 2.75,
+    "grafiche": 3.0,
+    "hook": 3.38,
+    "struttura": 3.5,
+    "finale": 3.62,
+    "storia_valore": 3.75,
+    "effetti_visivi": 3.75,
+    "suoni": 4.12,
+    "ritmo_tagli": 4.25,
+    "inquadratura": 4.88,
+    "sottotitoli_colori": 5.12,
+    "sincronizzazione": 5.38,
+    "sottotitoli_testo": 5.75
+   }
+  },
+  {
+   "giro": 4,
+   "media": 4.38,
+   "sezioni": {
+    "scelta_pezzi": 3.0,
+    "hook": 3.75,
+    "struttura": 3.75,
+    "storia_valore": 3.88,
+    "musica": 3.88,
+    "grafiche": 4.12,
+    "suoni": 4.25,
+    "ritmo_tagli": 4.5,
+    "effetti_visivi": 4.5,
+    "finale": 4.75,
+    "inquadratura": 5.25,
+    "sottotitoli_colori": 5.62,
+    "sottotitoli_testo": 5.75,
+    "sincronizzazione": 5.88
+   }
+  }
+ ],
+ "migliore": {
+  "giro": 4,
+  "media": 4.38,
+  "editore": "/Users/riccardofalco/Projects/clip-farm/laboratorio/ultra/giri/g04/editore_prima"
+ },
+ "allenamento": [
+  "ocTXLR2F5O4",
+  "SggsKTivDao",
+  "p64VdclGEJM",
+  "HZKQ-NQAiJ4",
+  "IUmjjdcRVNc",
+  "S9m6DopP2e4",
+  "6lPbHx_dFSo",
+  "auFZ029gEEs"
+ ]
+}

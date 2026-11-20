@@ -1,0 +1,83 @@
+{
+ "id": "C1t_Vz33Plo",
+ "data": "20260825",
+ "url": "https://www.youtube.com/watch?v=VvOQJTRVedA",
+ "titolo_live": "HAPPY SATURDAY + RETURN STREAM!",
+ "trovata": true,
+ "inizio_in_live": 1596.88,
+ "fine_in_live": 1822.07,
+ "gruppi_parole": 65,
+ "copertura_audio": 0.8,
+ "pezzi_speedy": [
+  {
+   "clip": [
+    0.75,
+    3.5
+   ],
+   "sorgente": [
+    140.31,
+    143.06
+   ]
+  },
+  {
+   "clip": [
+    3.25,
+    5.0
+   ],
+   "sorgente": [
+    84.77,
+    86.52
+   ]
+  },
+  {
+   "clip": [
+    6.0,
+    13.0
+   ],
+   "sorgente": [
+    148.31,
+    155.31
+   ]
+  },
+  {
+   "clip": [
+    13.5,
+    18.25
+   ],
+   "sorgente": [
+    156.41,
+    161.16
+   ]
+  },
+  {
+   "clip": [
+    19.75,
+    23.25
+   ],
+   "sorgente": [
+    167.66,
+    171.16
+   ]
+  },
+  {
+   "clip": [
+    25.5,
+    35.0
+   ],
+   "sorgente": [
+    175.11,
+    184.61
+   ]
+  },
+  {
+   "clip": [
+    36.5,
+    41.5
+   ],
+   "sorgente": [
+    190.19,
+    195.19
+   ]
+  }
+ ]
+}

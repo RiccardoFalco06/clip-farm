@@ -1,0 +1,73 @@
+{
+ "id": "ocTXLR2F5O4",
+ "data": "20260320",
+ "url": "https://www.youtube.com/watch?v=96g9-eaJVLM",
+ "titolo_live": "TALENT SHOW STREAM 🥇⭐ (HAPPY MONDAY)",
+ "trovata": true,
+ "inizio_in_live": 4281.77,
+ "fine_in_live": 4606.32,
+ "gruppi_parole": 62,
+ "copertura_audio": 0.7,
+ "pezzi_speedy": [
+  {
+   "clip": [
+    0.0,
+    3.0
+   ],
+   "sorgente": [
+    30.0,
+    33.0
+   ]
+  },
+  {
+   "clip": [
+    3.25,
+    6.0
+   ],
+   "sorgente": [
+    59.79,
+    62.54
+   ]
+  },
+  {
+   "clip": [
+    7.0,
+    9.75
+   ],
+   "sorgente": [
+    71.48,
+    74.23
+   ]
+  },
+  {
+   "clip": [
+    13.25,
+    18.75
+   ],
+   "sorgente": [
+    96.81,
+    102.31
+   ]
+  },
+  {
+   "clip": [
+    21.0,
+    24.5
+   ],
+   "sorgente": [
+    108.93,
+    112.43
+   ]
+  },
+  {
+   "clip": [
+    26.25,
+    32.0
+   ],
+   "sorgente": [
+    114.18,
+    119.93
+   ]
+  }
+ ]
+}

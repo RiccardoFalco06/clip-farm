@@ -1,0 +1,113 @@
+{
+ "id": "IUmjjdcRVNc",
+ "data": "20260428",
+ "url": "https://www.youtube.com/watch?v=QVXrjCDQ2jQ",
+ "titolo_live": "irl stream in Trinidad & Tobago 🇹🇹",
+ "trovata": true,
+ "inizio_in_live": 11028.88,
+ "fine_in_live": 11330.38,
+ "gruppi_parole": 41,
+ "copertura_audio": 0.68,
+ "pezzi_speedy": [
+  {
+   "clip": [
+    2.0,
+    5.5
+   ],
+   "sorgente": [
+    173.63,
+    177.13
+   ]
+  },
+  {
+   "clip": [
+    7.25,
+    10.5
+   ],
+   "sorgente": [
+    185.11,
+    188.36
+   ]
+  },
+  {
+   "clip": [
+    12.25,
+    14.25
+   ],
+   "sorgente": [
+    191.2,
+    193.2
+   ]
+  },
+  {
+   "clip": [
+    14.25,
+    17.0
+   ],
+   "sorgente": [
+    205.2,
+    207.95
+   ]
+  },
+  {
+   "clip": [
+    17.25,
+    20.25
+   ],
+   "sorgente": [
+    220.43,
+    223.43
+   ]
+  },
+  {
+   "clip": [
+    22.5,
+    25.75
+   ],
+   "sorgente": [
+    249.68,
+    252.93
+   ]
+  },
+  {
+   "clip": [
+    25.5,
+    27.75
+   ],
+   "sorgente": [
+    253.53,
+    255.78
+   ]
+  },
+  {
+   "clip": [
+    29.0,
+    33.5
+   ],
+   "sorgente": [
+    258.55,
+    263.05
+   ]
+  },
+  {
+   "clip": [
+    33.0,
+    35.0
+   ],
+   "sorgente": [
+    269.5,
+    271.5
+   ]
+  },
+  {
+   "clip": [
+    38.5,
+    40.0
+   ],
+   "sorgente": [
+    136.63,
+    138.13
+   ]
+  }
+ ]
+}

@@ -30,3 +30,21 @@
 __pycache__/
 *.pyc
 .DS_Store
+# stili e speedy-ultra (20/11, prima di cancellare la copia locale): solo codice, prompt, regole e metadati
+!/stili/
+!/schede/
+!/laboratorio/ultra/
+/laboratorio/ultra/giri/
+/laboratorio/ultra/dati/*/*
+!/laboratorio/ultra/dati/*/fonte.json
+/laboratorio/ultra/dati/_sottotitoli/
+/laboratorio/ultra/editore/lavoro/
+/laboratorio/ultra/editore/remotion/*
+!/laboratorio/ultra/editore/remotion/src/
+!/laboratorio/ultra/editore/remotion/*.mjs
+!/laboratorio/ultra/editore/remotion/*.json
+/laboratorio/ultra/editore/remotion/package-lock.json
+*.log
+/laboratorio/ultra/editore/_ombra/musica
+/laboratorio/ultra/editore/_ombra/suoni
+/laboratorio/strumenti/testi

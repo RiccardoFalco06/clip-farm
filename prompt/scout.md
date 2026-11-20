@@ -28,6 +28,6 @@ poi le sezioni: **In breve** (3 righe), **Live in arrivo**, **Numeri di adesso**
 ```json
 {"in_breve": "una frase", "nuovi_streamer": [{"nome": "...", "twitch": "...", "youtube": "@...", "kick": "...", "media": 20000, "fonte": "url"}],
  "campagne": [{"nome": "...", "streamer": "...", "per_1000": 1.0, "tetto_clip": 500, "scommesse": false, "link": "...",
-               "sito": "contentrewards|clipping|altro", "solo_filmato": false, "hashtag": ["#..."], "promozione": false, "regole": ["..."]}]}
+               "sito": "contentrewards|clipping|altro", "solo_filmato": false, "hashtag": ["#..."], "promozione": false, "regole": ["..."], "filigrana": ""}]}
 ```
-Per le campagne: `streamer` = il nome esatto come nell'elenco seguito (o "" se non è di uno streamer seguito). `sito` = dove si inviano i link. `solo_filmato` = true se accetta solo un video o una live precisa (non le clip di qualsiasi live). `hashtag` = quelli obbligatori. `promozione` = true se è pagata da un marchio (va dichiarata come contenuto promozionale). `regole` = altri obblighi brevi (menzioni, cosa deve vedersi), in italiano.
+Per le campagne: `streamer` = il nome esatto come nell'elenco seguito (o "" se non è di uno streamer seguito). `sito` = dove si inviano i link. `solo_filmato` = true se accetta solo un video o una live precisa (non le clip di qualsiasi live). `hashtag` = quelli obbligatori. `promozione` = true se è pagata da un marchio (va dichiarata come contenuto promozionale). `regole` = altri obblighi brevi (menzioni, cosa deve vedersi), in italiano. `filigrana` = l'URL https dell'immagine del watermark/logo da mettere sul video, se la campagna lo rende obbligatorio e lo fornisce (nel brief o negli asset); altrimenti "".

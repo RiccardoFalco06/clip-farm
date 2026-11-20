@@ -9,6 +9,7 @@ import json
 import os
 import random
 import re
+import socket
 import subprocess
 import sys
 import time
@@ -27,8 +28,19 @@ RIFIUTO = re.compile(r"dominio bloccato|permission denied|not allowed|chrome non
 BLOCCO = re.compile(r"^(?!.*dominio bloccato).*(sospes|bloccat|terminat|disabilitat|suspend|terminated|disabled|banned)", re.I | re.S)
 
 
+def in_rete():
+    """Senza internet l'estensione di Chrome si scollega (Riccardo, 13 nov): inutile lanciare l'agente."""
+    try:
+        socket.create_connection(("claude.ai", 443), 5).close()
+        return True
+    except OSError:
+        return False
+
+
 def chiedi(nome, valori, strumenti, giri):
     """Lancia `claude -p` col prompt compilato e restituisce il JSON della risposta (dict)."""
+    if strumenti is CHROME and not in_rete():
+        return {"errore": "chrome non disponibile", "dettaglio": "il Mac è senza internet"}
     prompt = (QUI / f"prompt/{nome}.md").read_text()
     for k, v in valori.items():
         prompt = prompt.replace("{{" + k + "}}", str(v))
@@ -62,6 +74,21 @@ def account(c, piattaforma):
     return next((a for a in CONFIG["account"].get(piattaforma, []) if a["nome"] not in bloccati), None)
 
 
+def marchia(file, fil):
+    """Riccardo, 14 nov: nelle campagne "ti adatti tu ogni volta in base alla richiesta specifica della campagna, senza compromettere lo stile".
+    La filigrana richiesta va SOPRA la clip già montata (il montaggio non cambia): centrata, larga `larghezza` del quadro, centro a `y`
+    (frazione dell'altezza). Mai sui bordi: le campagne scartano le filigrane nascoste ai lati o troppo piccole."""
+    f, img = Path(file), QUI / fil["file"]
+    out = f.with_name(f"{f.stem}_{img.parent.name}.mp4")
+    if not out.exists():
+        w, y = float(fil.get("larghezza", 0.45)), float(fil.get("y", 0.63))
+        subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", f, "-i", img, "-filter_complex",
+                        f"[1][0]scale2ref=w=main_w*{w}:h=ow/mdar[m][v];[v][m]overlay=x=(main_w-overlay_w)/2:y=main_h*{y}-overlay_h/2",
+                        "-c:v", "libx264", "-crf", "17", "-preset", "medium", "-pix_fmt", "yuv420p", "-c:a", "copy", "-movflags", "+faststart", out],
+                       check=True, timeout=1200)
+    return out
+
+
 def leggero(file, tetto=9.4e6):
     """Il file da caricare: `file_upload` di Chrome passa al massimo 10 MB, sopra si fa una copia HEVC a due passate che ci sta.
     shortcut: sotto 1800 kb/s (clip oltre ~40 s) la copia scende a 720p; per caricare l'originale serve un'altra strada (API ufficiali)."""
@@ -89,17 +116,24 @@ VERIFICA = re.compile(r"confirm you.re human|captcha|verify (that )?you|are you 
 LIMITE = re.compile(r"daily upload limit|wait 24 hours|limite (giornaliero|di caricament)", re.I)  # il tetto giornaliero della piattaforma: non è un errore della clip
 
 
-def prossima(clips, uscite, attive, tentativi, da=0, senza_recupero=()):
-    """Clip e piattaforme da pubblicare adesso. Riccardo, 11 nov: "le clip fatte devono essere pubblicate su tutti i social".
-    Prima le clip nuove ('montata'), poi il recupero delle piattaforme mancate da quelle già uscite altrove (dalla clip `da` in poi:
-    quelle prima non hanno passato il controllo qualità). La stessa piattaforma si riprova al massimo 3 volte per clip."""
-    for stato in ("montata", "pubblicata"):
-        for k in clips:
-            # senza_recupero: Riccardo, 12 nov, su YouTube le clip già uscite altrove restavano a 0 visualizzazioni
-            manca = [q for q in attive if k["stato"] == stato and (stato == "montata" or (k["id"] >= da and q not in senza_recupero))
-                     and (k["id"], q) not in uscite and tentativi.get(f"{k['id']}:{q}", 0) < 3]
-            if manca:
-                return k, manca
+def interesse(k):
+    """Quanto può interessare una clip: la somma dei tre voti del giudice (capibile/divertente/finale) scritta in `perche`."""
+    m = re.search(r"voti (\d+(?:\.\d+)?)/(\d+(?:\.\d+)?)/(\d+(?:\.\d+)?)", k["perche"] or "")  # k: riga del database o dict
+    return sum(map(float, m.groups())) if m else 0
+
+
+def prossima(clips, uscite, attive, tentativi, oggi, viste, tetto=3, soglia=10**9):
+    """Clip e piattaforma da pubblicare adesso. Riccardo, 13 nov: "3 video al giorno a social (in tutto 9) tutti diversi. poi i video
+    che vediamo che esplodono su un social li possiamo pubblicare anche sugli altri". Una piattaforma alla volta, la più indietro oggi;
+    prima una clip esplosa altrove (>= soglia visualizzazioni, conta nei 3), poi una clip mai uscita. Al massimo 3 tentativi per clip e piattaforma."""
+    libere = sorted((q for q in attive if oggi.get(q, 0) < tetto), key=lambda q: oggi.get(q, 0))
+    for q in libere:
+        prova = lambda k: (k["id"], q) not in uscite and tentativi.get(f"{k['id']}:{q}", 0) < 3
+        esplose = sorted((k for k in clips if k["stato"] == "pubblicata" and viste.get(k["id"], 0) >= soglia and prova(k)), key=lambda k: -viste[k["id"]])
+        # Riccardo, 14 nov: "massimo 3 video al giorno in ordine di quale video può poter generare più interesse"
+        nuove = sorted((k for k in clips if k["stato"] == "montata" and not any(u[0] == k["id"] for u in uscite) and prova(k)), key=lambda k: -interesse(k))
+        if esplose or nuove:
+            return (esplose or nuove)[0], [q]
     return None, []
 
 
@@ -167,7 +201,10 @@ def pubblica(c):
     clips = c.execute("select clip.*, live.streamer from clip join live on live.id = clip.live where clip.stato in ('montata', 'pubblicata') order by creato").fetchall()
     uscite = {(r["clip"], r["piattaforma"]) for r in c.execute("select clip, piattaforma from pubblicazione")}
     tentativi = kv(c, "tentativi") or {}
-    k, dove = prossima(clips, uscite, attive, tentativi, CONFIG.get("recupero_da_clip", 0), CONFIG.get("senza_recupero", []))
+    mezzanotte = time.mktime(time.strptime(time.strftime("%Y-%m-%d"), "%Y-%m-%d"))
+    oggi = dict(c.execute("select piattaforma, count(*) from pubblicazione where quando >= ? group by piattaforma", (mezzanotte,)).fetchall())
+    viste = dict(c.execute("select clip, max(visualizzazioni) from pubblicazione group by clip").fetchall())
+    k, dove = prossima(clips, uscite, attive, tentativi, oggi, viste, CONFIG.get("clip_al_giorno_per_social", 3), CONFIG.get("esplosa_viste", 10**9))
     if not k:
         return
     dest = {q: attive[q] for q in dove}
@@ -182,8 +219,8 @@ def pubblica(c):
         return rinuncia()  # una clip già uscita altrove con l'inizio fermo non si porta sulle altre piattaforme
     # distanza dalla prossima estratta a caso ogni volta (richiesta di Riccardo): un intervallo fisso si riconosce subito come automatico
     kv(c, "prossima_pubblica", time.time() + random.uniform(*CONFIG["pubblica_ogni_minuti"]) * 60)
-    file = leggero(k["file"])
     camp = campagna(k)
+    file = leggero(marchia(k["file"], camp["filigrana"]) if camp and camp.get("filigrana") else k["file"])
     didascalia = " ".join([k["didascalia"] or "", *[h for h in camp.get("hashtag", []) if h.lower() not in (k["didascalia"] or "").lower()]]).strip() if camp else k["didascalia"]
     domanda = lambda d: chiedi("pubblica", {"FILE": file, "TITOLO": k["titolo"], "DIDASCALIA": didascalia, "VISIBILITA": CONFIG.get("visibilita_youtube", "Pubblico"), "CAMPAGNA": regole(camp),
                                             "DESTINAZIONI": "\n".join(f"- {q}: account {a['nome']}" + (f", profilo Chrome \"{a['profilo']}\"" if a.get("profilo") else "") for q, a in d.items())},
@@ -195,6 +232,8 @@ def pubblica(c):
         testo = f"pubblicazione rimandata, la clip resta in coda. Risposta dell'agente: {json.dumps(r, ensure_ascii=False)[:300]}"
         if not c.execute("select 1 from evento where tipo='account' and testo=? and quando>?", (testo, time.time() - 6 * 3600)).fetchone():
             evento(c, "account", testo, email=True)
+        if r.get("errore") == "chrome non disponibile":  # Chrome o internet tornano da soli: si riprova tra 10 minuti, non tra 45-120
+            kv(c, "prossima_pubblica", time.time() + 600)
         return
     # Chrome a volte rifiuta un sito in una sessione e lo accetta nella successiva (visto con TikTok): si riprova una volta in una sessione nuova
     if rifiutate := {q: a for q, a in dest.items() if RIFIUTO.search(str((r.get(q) or {}).get("errore", "")) if isinstance(r.get(q), dict) else "")}:
@@ -278,7 +317,15 @@ def attivabile(k, noti):
             and not k.get("solo_filmato") and str(k.get("link", "")).startswith("https://")):
         return None
     nome = next(s["nome"] for s in CONFIG["streamer"] if s["nome"].lower() == k["streamer"].lower())
-    return {"nome": str(k.get("nome") or nome)[:80], "streamer": [nome], "link_invio": k["link"], "hashtag": [h for h in k.get("hashtag") or [] if isinstance(h, str) and h.startswith("#")][:5],
+    fil = {}
+    if str(k.get("filigrana", "")).startswith("https://"):  # watermark obbligatorio della campagna: si scarica e si mette sopra ogni clip
+        cartella = QUI / "campagne" / re.sub(r"[^a-z0-9]+", "-", nome.lower()).strip("-")
+        cartella.mkdir(parents=True, exist_ok=True)
+        grezza = cartella / "filigrana_scaricata"
+        subprocess.run(["curl", "-sL", "-m", "60", "-o", grezza, k["filigrana"]], check=True)
+        subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", grezza, cartella / "filigrana.png"], check=True)
+        fil = {"filigrana": {"file": str((cartella / "filigrana.png").relative_to(QUI)), "larghezza": 0.45, "y": 0.63}}
+    return {**fil, "nome": str(k.get("nome") or nome)[:80], "streamer": [nome], "link_invio": k["link"], "hashtag": [h for h in k.get("hashtag") or [] if isinstance(h, str) and h.startswith("#")][:5],
             "promozione": bool(k.get("promozione")), "regole": [str(x)[:200] for x in k.get("regole") or []][:5]}
 
 
@@ -330,14 +377,18 @@ def in_scadenza(c, ora):
 if __name__ == "__main__":
     assert BLOCCO.search("Il tuo account è stato sospeso") and BLOCCO.search("This account has been terminated") and not BLOCCO.search("dominio bloccato") and not BLOCCO.search("upload fallito")
     assert muta({"errore": "chrome non disponibile"}, {"youtube": 1}) and not muta({"youtube": {"url": "u"}}, {"youtube": 1, "tiktok": 1})
-    _c = [{"id": 1, "stato": "pubblicata"}, {"id": 2, "stato": "montata"}]
-    assert prossima(_c, {(1, "youtube")}, ["youtube", "instagram"], {}) == (_c[1], ["youtube", "instagram"])  # prima la clip nuova
-    assert prossima(_c[:1], {(1, "youtube")}, ["youtube", "instagram"], {}) == (_c[0], ["instagram"])  # poi il recupero di ciò che manca
-    assert prossima(_c[:1], {(1, "instagram")}, ["youtube", "instagram"], {}, senza_recupero=["youtube"]) == (None, [])
-    assert prossima(_c[1:], set(), ["youtube"], {}, senza_recupero=["youtube"]) == (_c[1], ["youtube"])  # le clip nuove escono lo stesso
-    assert prossima(_c[:1], {(1, "youtube")}, ["youtube", "instagram"], {}, da=5) == (None, []) and prossima(_c[:1], {(1, "youtube")}, ["youtube", "instagram"], {"1:instagram": 3}) == (None, [])
+    _c = [{"id": 1, "stato": "pubblicata", "perche": ""}, {"id": 2, "stato": "montata", "perche": ""}, {"id": 3, "stato": "montata", "perche": ""}]
+    _y = ["youtube", "instagram", "tiktok"]
+    _v = [{"id": 7, "stato": "montata", "perche": "x (voti 5/5/5)"}, {"id": 8, "stato": "montata", "perche": "y (voti 8/7/9) z"}, {"id": 9, "stato": "montata", "perche": ""}]
+    assert interesse(_v[1]) == 24 and interesse(_v[2]) == 0 and prossima(_v, set(), _y, {}, {}, {}, 3, 5000) == (_v[1], ["youtube"])  # prima la più interessante
+    assert prossima(_c, {(1, "youtube")}, _y, {}, {}, {1: 50}, 3, 5000) == (_c[1], ["youtube"])  # clip nuova, una piattaforma sola
+    assert prossima(_c, {(1, "youtube")}, _y, {}, {"youtube": 1}, {1: 50}, 3, 5000) == (_c[1], ["instagram"])  # la più indietro oggi
+    assert prossima(_c, {(1, "youtube"), (2, "instagram")}, _y, {}, {"youtube": 1, "instagram": 1}, {1: 50}, 3, 5000) == (_c[2], ["tiktok"])  # tutte diverse
+    assert prossima(_c, {(1, "youtube")}, _y, {}, {"youtube": 1}, {1: 9000}, 3, 5000) == (_c[0], ["instagram"])  # esplosa: va anche sugli altri
+    assert prossima(_c, set(), _y, {}, {"youtube": 3, "instagram": 3, "tiktok": 3}, {}, 3, 5000) == (None, [])  # 3 al giorno per social
+    assert prossima(_c[:1], {(1, "youtube")}, _y, {}, {}, {1: 50}, 3, 5000) == (None, [])  # non esplosa: resta dov'è
+    assert prossima(_c, set(), _y, {"2:youtube": 3}, {}, {}, 3, 5000) == (_c[2], ["youtube"])
     assert VERIFICA.search("Confirm you're human to use your account, iamclipfarmer67") and not VERIFICA.search("Post couldn't be shared")
-    assert prossima(_c[:1], {(1, "youtube")}, ["youtube"], {}) == (None, []) and LIMITE.search("Daily upload limit reached. Upload more videos daily after a one-time verification or wait 24 hours.")
     assert RIFIUTO.search("dominio bloccato") and RIFIUTO.search("Permission denied for this action on this domain") and not RIFIUTO.search("account sospeso")
     assert 0 < CONFIG["pubblica_ogni_minuti"][0] < CONFIG["pubblica_ogni_minuti"][1]
     assert estrai('ecco:\n```json\n{"youtube": {"url": "https://x"}}\n```') == {"youtube": {"url": "https://x"}}

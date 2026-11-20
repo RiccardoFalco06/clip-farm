@@ -214,7 +214,7 @@ def giro():
             if l["registrata"]:
                 if vivo(l["pid"]):  # sparita dalla classifica (rete giù) ma il registratore gira ancora: senza questo resta orfano e riempie il disco
                     os.killpg(l["pid"], signal.SIGTERM)
-                (REG / str(l["id"]) / "FINE").touch()
+                (REG / str(l["id"])).is_dir() and (REG / str(l["id"]) / "FINE").touch()  # la cartella può essere già stata cancellata per fare spazio
                 evento(c, "live finita", f"{s}: registrazione chiusa" + ("" if s not in righe else " (registratore caduto, riparte)"))
     aperte = {s: l for s, l in aperte.items() if s in righe and not (l["registrata"] and not vivo(l["pid"]))}
 
@@ -240,16 +240,20 @@ def giro():
         if ora - (kv(c, "disco") or 0) > 3600:
             kv(c, "disco", ora)
             evento(c, "disco pieno", f"restano {shutil.disk_usage(REG).free / 1e9:.1f} GB: nessuna registrazione nuova finché non si libera spazio", email=True)
+    if shutil.disk_usage(REG).free < 9e9 and len(scelte) > 1:  # sotto 9 GB solo la live più vista: con due la catena resta indietro e i blocchi riempiono il disco (19-20/11)
+        scelte = [max(scelte, key=lambda s: aperte[s]["spettatori"] or 0)]
     for s, l in aperte.items():
         if l["registrata"] and s not in scelte:  # scalzata da una live più forte
             os.killpg(l["pid"], signal.SIGTERM)
             c.execute("update live set registrata=0, pid=null where id=?", (l["id"],))
-            (REG / str(l["id"]) / "FINE").touch()
+            (REG / str(l["id"])).is_dir() and (REG / str(l["id"]) / "FINE").touch()  # la cartella può essere già stata cancellata per fare spazio
             evento(c, "registrazione fermata", f"{s}: scalzata da una live con più spettatori")
         elif not l["registrata"] and s in scelte:
             d = REG / str(l["id"])
             d.mkdir(parents=True, exist_ok=True)
-            p = subprocess.Popen(["/bin/zsh", str(QUI / "registra.sh"), str(d), l["url"], l["url"].rsplit("/", 1)[-1] if l["piattaforma"] == "twitch" else ""],
+            (d / "FINE").unlink(missing_ok=True)  # live ripresa dopo uno stop: senza questo la catena prende per chiusi i blocchi a metà e dopo 3 ore cancella la cartella
+            primo = max([int(f.stem[2:]) + 1 for f in d.glob("b_*.ts")] + [c.execute("select coalesce(max(n) + 1, 0) from blocco where live=?", (l["id"],)).fetchone()[0]])
+            p = subprocess.Popen(["/bin/zsh", str(QUI / "registra.sh"), str(d), l["url"], l["url"].rsplit("/", 1)[-1] if l["piattaforma"] == "twitch" else "", str(primo)],
                                  start_new_session=True, stdout=open(d / "registra.log", "a"), stderr=subprocess.STDOUT)
             c.execute("update live set registrata=1, pid=? where id=?", (p.pid, l["id"]))
             r = righe[s]

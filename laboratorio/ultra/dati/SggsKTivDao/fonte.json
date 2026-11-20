@@ -1,0 +1,43 @@
+{
+ "id": "SggsKTivDao",
+ "data": "20250618",
+ "url": "https://www.youtube.com/watch?v=Pi-c5vM5fgE",
+ "titolo_live": "irl CLUB WORLD CUP ⚽️ meeting Messi..?",
+ "trovata": true,
+ "inizio_in_live": 2622.72,
+ "fine_in_live": 2979.48,
+ "gruppi_parole": 40,
+ "copertura_audio": 0.8,
+ "pezzi_speedy": [
+  {
+   "clip": [
+    0.0,
+    6.25
+   ],
+   "sorgente": [
+    279.46,
+    285.71
+   ]
+  },
+  {
+   "clip": [
+    6.5,
+    9.75
+   ],
+   "sorgente": [
+    298.17,
+    301.42
+   ]
+  },
+  {
+   "clip": [
+    10.25,
+    14.25
+   ],
+   "sorgente": [
+    322.76,
+    326.76
+   ]
+  }
+ ]
+}
